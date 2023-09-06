@@ -4,7 +4,7 @@ body {
   align-items: center;
   width: 100%;
   height: 100vh;
-  background-image: url(C:\Users\oxiel\OneDrive\Desktop\BDM\front-bdm\public\fondo.jpg);
+  background-image: url(C:\Users\oxiel\OneDrive\Desktop\BDM\front-bdm\public\fondoBDM.jpg);
   background-size: cover;
   background-attachment: fixed;
 }
@@ -22,14 +22,14 @@ body {
 
   width: 300px; /* Esto hará que la imagen ocupe la mitad del contenedor */
   height: auto; /* Mantendrá la proporción de aspecto de la imagen */
-  box-shadow: 5px 5px 20px #bd8860;
+  box-shadow: 5px 5px 10px #4545466b;
 }
 
 .imagen-izquierdaR {
 
-  width: 544px; /* Esto hará que la imagen ocupe la mitad del contenedor */
+  width: 581px; /* Esto hará que la imagen ocupe la mitad del contenedor */
   height: auto; /* Mantendrá la proporción de aspecto de la imagen */
-  box-shadow: 5px 5px 20px #bd8860;
+  box-shadow: 5px 5px 10px #4545466b;
 }
 
 .form_main {
@@ -40,7 +40,7 @@ body {
   justify-content: center;
   background-color: rgb(255, 255, 255);
   padding: 30px 30px 30px 30px;
-  box-shadow: 5px 5px 20px #bd8860;
+  box-shadow: 5px 5px 10px #4545466b;
   position: relative;
   overflow: hidden;
 }
@@ -53,21 +53,16 @@ body {
   justify-content: center;
   background-color: rgb(255, 255, 255);
   padding: 30px 30px 30px 30px;
-  box-shadow: 5px 5px 20px #bd8860;
+  box-shadow: 5px 5px 10px #4545466b;
   position: relative;
   overflow: hidden;
-}
-  
-@font-face {
-  font-family: 'Freehand-Regular';
-  src:url(/src/components/Fuentes/Freehand-Regular.ttf); 
 }
 
 .heading {
   /* Establece el título "Login" para que esté centrado y más arriba */
-  font-family: 'Freehand-Regular';
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 4em;
-  color: #bd8860;
+  color: #40b995;
   font-weight: 700;
   text-align: center; /* Centra el texto horizontalmente */
 }
@@ -76,7 +71,7 @@ body {
   /* Establece el título "Login" para que esté centrado y más arriba */
   font-family: 'Freehand-Regular';
   font-size: 2.5em;
-  color: #bd8860;
+  color: #40b995;
   font-weight: 700;
   text-align: center; /* Centra el texto horizontalmente */
 }
@@ -94,7 +89,7 @@ body {
     width: 100%;
     height: 30px;
     background-color: white;
-    border: 2px solid #bd8860;
+    border: 2px solid #94e0ca;
     margin: 5px 0px;
     color: rgb(125, 125, 125);
     font-size: 1em;
@@ -108,7 +103,7 @@ body {
     width: 163px;
     height: 30px;
     background-color: white;
-    border: 2px solid #bd8860;
+    border: 2px solid #94e0ca;
     margin: 5px 8px;
     color: rgb(125, 125, 125);
     font-size: 1em;
@@ -119,14 +114,14 @@ body {
   }
   
   .inputField:focus {
-    border: 2px solid #bd8860; /* Cambia el color del borde al enfocar */
+    border: 2px solid #f59ac7; /* Cambia el color del borde al enfocar */
   }
 
   .button {
     position:  center;
     width: 100%;
     border: none;
-    background-color: #d3694b;
+    background-color: #ff98d4;
     color: white;
     font-size: 1.5em; /* Aumenta el tamaño de la fuente */
     font-weight: 500;
@@ -136,21 +131,21 @@ body {
   }
   
   .button:hover {
-    background-color: hsl(27, 100%, 69%);
+    background-color: #94e0ca;
   }
   
   .forgotLink {
     font-family: 'Arial', sans-serif; /* Establece la fuente Arial como primera opción */
     font-weight: bold; /* Establece la negrita */
     font-size:0.8em;
-    color: #bd8860;
+    color: #40b995;
     text-decoration: none;
     text-align: right;
   }
 
 .user-passw {
   text-align: left;
-  color:#bd8860;
+  color:#40b995;
 }
 
 .dont-account {
@@ -160,7 +155,7 @@ body {
 }
 
 .RegisterLink {
-  color: #d3694b;
+  color: #ff98d4;
   font-family: 'Arial', sans-serif; /* Establece la fuente Arial como primera opción */
   font-weight: bold; /* Establece la negrita */
   font-size: 1em;

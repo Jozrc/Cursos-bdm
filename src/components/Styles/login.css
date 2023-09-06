@@ -1,0 +1,174 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background-image: url(C:\Users\oxiel\OneDrive\Desktop\BDM\front-bdm\public\fondo.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.container {
+  display: flex; /* Utiliza flexbox para alinear elementos horizontalmente */
+}
+
+.center-container {
+  display: flex;
+  align-items: center;
+}
+
+.imagen-izquierda {
+
+  width: 300px; /* Esto hará que la imagen ocupe la mitad del contenedor */
+  height: auto; /* Mantendrá la proporción de aspecto de la imagen */
+  box-shadow: 5px 5px 20px #bd8860;
+}
+
+.imagen-izquierdaR {
+
+  width: 544px; /* Esto hará que la imagen ocupe la mitad del contenedor */
+  height: auto; /* Mantendrá la proporción de aspecto de la imagen */
+  box-shadow: 5px 5px 20px #bd8860;
+}
+
+.form_main {
+  width: 280px; /* Ancho del formulario, ajusta según tus necesidades */
+  height: 425px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgb(255, 255, 255);
+  padding: 30px 30px 30px 30px;
+  box-shadow: 5px 5px 20px #bd8860;
+  position: relative;
+  overflow: hidden;
+}
+
+.form_main2 {
+  width: 400px; /* Ancho del formulario, ajusta según tus necesidades */
+  height: 550px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgb(255, 255, 255);
+  padding: 30px 30px 30px 30px;
+  box-shadow: 5px 5px 20px #bd8860;
+  position: relative;
+  overflow: hidden;
+}
+  
+@font-face {
+  font-family: 'Freehand-Regular';
+  src:url(/src/components/Fuentes/Freehand-Regular.ttf); 
+}
+
+.heading {
+  /* Establece el título "Login" para que esté centrado y más arriba */
+  font-family: 'Freehand-Regular';
+  font-size: 4em;
+  color: #bd8860;
+  font-weight: 700;
+  text-align: center; /* Centra el texto horizontalmente */
+}
+
+.heading2 {
+  /* Establece el título "Login" para que esté centrado y más arriba */
+  font-family: 'Freehand-Regular';
+  font-size: 2.5em;
+  color: #bd8860;
+  font-weight: 700;
+  text-align: center; /* Centra el texto horizontalmente */
+}
+
+  .inputContainer {
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+  
+  .inputField {
+    width: 100%;
+    height: 30px;
+    background-color: white;
+    border: 2px solid #bd8860;
+    margin: 5px 0px;
+    color: rgb(125, 125, 125);
+    font-size: 1em;
+    font-weight: 500;
+    box-sizing: border-box;
+    border-radius: 8px; /* Añade bordes redondeados */
+    outline: none; /* Elimina el resplandor azul del enfoque */
+  }
+
+  .inputField2 {
+    width: 163px;
+    height: 30px;
+    background-color: white;
+    border: 2px solid #bd8860;
+    margin: 5px 8px;
+    color: rgb(125, 125, 125);
+    font-size: 1em;
+    font-weight: 500;
+    box-sizing: border-box;
+    border-radius: 8px; /* Añade bordes redondeados */
+    outline: none; /* Elimina el resplandor azul del enfoque */
+  }
+  
+  .inputField:focus {
+    border: 2px solid #bd8860; /* Cambia el color del borde al enfocar */
+  }
+
+  .button {
+    position:  center;
+    width: 100%;
+    border: none;
+    background-color: #d3694b;
+    color: white;
+    font-size: 1.5em; /* Aumenta el tamaño de la fuente */
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 8px;
+    border-radius: 10px; /* Agrega un radio de borde para suavizar los bordes */
+  }
+  
+  .button:hover {
+    background-color: hsl(27, 100%, 69%);
+  }
+  
+  .forgotLink {
+    font-family: 'Arial', sans-serif; /* Establece la fuente Arial como primera opción */
+    font-weight: bold; /* Establece la negrita */
+    font-size:0.8em;
+    color: #bd8860;
+    text-decoration: none;
+    text-align: right;
+  }
+
+.user-passw {
+  text-align: left;
+  color:#bd8860;
+}
+
+.dont-account {
+  color: #7d7d7d;
+  text-align: center;
+  padding-top: 10px;
+}
+
+.RegisterLink {
+  color: #d3694b;
+  font-family: 'Arial', sans-serif; /* Establece la fuente Arial como primera opción */
+  font-weight: bold; /* Establece la negrita */
+  font-size: 1em;
+  text-decoration: none;
+  text-align:center;
+}
+
+.user-passw-container {
+  display: flex;
+  justify-content: space-between; /* Esto separará los elementos horizontalmente */
+}

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import './Styles/login.css';
-import miImagen from "./images/login.png";
+import miImagen from "./images/LoginBDM.jpeg";
 
 const Login = () => {
     return (
@@ -25,7 +25,7 @@ const Login = () => {
           </div>
           <Link to="/" className="forgotLink">Forgot your password?</Link>
   
-          <button className="button">Submit</button>
+          <Link to="/"><button className="button">Submit</button></Link>
           <p className="dont-account">Don´t have an account yet? </p>
           <Link to="/register" className="RegisterLink">Create an account</Link>
 

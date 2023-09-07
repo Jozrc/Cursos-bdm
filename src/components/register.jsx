@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import './Styles/login.css';
-import miImagen from "./images/login.png";
-import miImagenR from "./images/register.png";
+import miImagen from "./images/LoginBDM.jpeg";
+import miImagenR from "./images/registerBDM.png";
 
 
 const Register = () => {
@@ -49,7 +49,7 @@ const Register = () => {
               <input type="text" className="inputField2" />
             </div>
 
-            <button className="button">Submit</button>
+            <Link to="/"><button className="button">Submit</button></Link>
             <p className="dont-account">Do you already have an account? </p>
             <Link to="/login" className="RegisterLink">Log in</Link>
   

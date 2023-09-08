@@ -15,10 +15,8 @@ function App() {
     firstN: '',
     LastN: '',
     email: '',
-    gender:'',
     password: '',
     Cnumber: '',
-    rol:''
   });
 
   const location = window.location.pathname;

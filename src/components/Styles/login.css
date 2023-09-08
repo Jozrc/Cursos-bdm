@@ -27,7 +27,7 @@ body {
 
 .imagen-izquierdaR {
 
-  width: 690px; /* Esto hará que la imagen ocupe la mitad del contenedor */
+  width: 730px; /* Esto hará que la imagen ocupe la mitad del contenedor */
   height: auto; /* Mantendrá la proporción de aspecto de la imagen */
   box-shadow: 5px 5px 10px #4545466b;
 }
@@ -47,7 +47,7 @@ body {
 
 .form_main2 {
   width: 400px; /* Ancho del formulario, ajusta según tus necesidades */
-  height: 650px;
+  height: 690px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -111,6 +111,23 @@ body {
     box-sizing: border-box;
     border-radius: 8px; /* Añade bordes redondeados */
     outline: none; /* Elimina el resplandor azul del enfoque */
+    
+  }
+
+  .inputField3 {
+    width: 163px;
+    height: 30px;
+    background-color: white;
+    border: 2px solid #94e0ca;
+    margin-right: 53%;
+    margin-bottom: 1%;
+    color: rgb(125, 125, 125);
+    font-size: 1em;
+    font-weight: 500;
+    box-sizing: border-box;
+    border-radius: 8px; /* Añade bordes redondeados */
+    outline: none; /* Elimina el resplandor azul del enfoque */
+    
   }
   
   .inputField:focus {
@@ -132,7 +149,7 @@ body {
   
   .button:hover {
     background-color: #94e0ca;
-  }
+  }let
   
   .forgotLink {
     font-family: 'Arial', sans-serif; /* Establece la fuente Arial como primera opción */
@@ -147,6 +164,8 @@ body {
   text-align: left;
   color:#40b995;
 }
+
+
 
 .dont-account {
   color: #7d7d7d;

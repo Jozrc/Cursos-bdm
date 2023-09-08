@@ -60,7 +60,22 @@ const Register = ({user, setUser}) => {
           </div>
           <div className="inputContainer">
             <input type="date" name="birtday" onChange={handleClick} className="inputField2" />
-            <input type="text" name="gender" onChange={handleClick} className="inputField2" />
+            <select name="rol" onChange={handleClick} className="inputField2">
+              <option value="value1">M</option>
+              <option value="value2" selected>F</option>
+            </select>
+          </div>
+
+          <div className="user-passw-container">
+          <h5 className="user-passw">Rol</h5>
+          </div>
+
+          <div className="inputContainer">
+            <select name="rol" onChange={handleClick} className="inputField3">
+              <option value="value1">Vendedor</option>
+              <option value="value2" selected>Comprador</option>
+              <option value="value3">Vendedor/Comprador</option>
+            </select>
           </div>
 
           <Link to="/"><button className="button">Submit</button></Link>

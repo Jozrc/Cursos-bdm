@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import Index from "./components/index.jsx";
 import NavbarReact from "./components/nav.jsx";
 import Login from "./components/login.jsx";
@@ -8,14 +9,27 @@ import 'bootstrap/dist/css/bootstrap.css'
 
 
 function App() {
+
+
+  const [ user, setUser ] = useState({
+      user:'',
+      firstN: '',
+      LastN: '',
+      email: '',
+      gender:'',
+      password: '',
+      Cnumber: '',
+      rol:''
+  });
+
   const location = window.location.pathname;
 
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={ <Index/> } />
-        <Route path="/login" element={ <Login/> }/>
-        <Route path="/register" element={ <Register/> }/>
+        <Route path="/login" element={ <Login user={ user } setUser={ setUser }/> }/>
+        <Route path="/register" element={ <Register user={ user } setUser={ setUser } /> }/>
       </Routes>
     </div>
 

@@ -5,7 +5,7 @@ import miImagen from "./images/LoginBDM.jpeg";
 import miImagenR from "./images/registerBDM.png";
 
 
-const Register = () => {
+const Register = ({user, setUser}) => {
     return (
         <div className="container">
 
@@ -15,7 +15,8 @@ const Register = () => {
   
           <form action="" className="form_main2">
             <h1 className="heading2">Register</h1>
-  
+
+            
             <div className="user-passw-container">
             <h5 className="user-passw">First Name</h5>
             <h5 className="user-passw">Last Name</h5>
@@ -24,10 +25,13 @@ const Register = () => {
               <input type="text" className="inputField2" />
               <input type="text" className="inputField2" />
             </div>
-    
-            <h5 className="user-passw">Gmail</h5>
+            <h5 className="user-passw">User</h5>
             <div className="inputContainer">
-              <input type="gmail" className="inputField" />
+              <input type="text" className="inputField" />
+            </div>
+            <h5 className="user-passw">Email</h5>
+            <div className="inputContainer">
+              <input type="email" className="inputField" />
             </div>
 
             <h5 className="user-passw">Password</h5>
@@ -41,8 +45,8 @@ const Register = () => {
             </div>
     
             <div className="user-passw-container">
-            <h5 className="user-passw">Date</h5>
-            <h5 className="user-passw">Country</h5>
+            <h5 className="user-passw">Birthday</h5>
+            <h5 className="user-passw">Gender</h5>
             </div>
             <div className="inputContainer">
               <input type="date" className="inputField2" />

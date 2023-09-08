@@ -4,7 +4,7 @@ body {
   align-items: center;
   width: 100%;
   height: 100vh;
-  background-image: url(C:\Users\oxiel\OneDrive\Desktop\BDM\front-bdm\public\fondoBDM.jpg);
+  background-image: url(E:\pruebas\proyectobdm\front-bdm\public\fondoBDM.jpg);
   background-size: cover;
   background-attachment: fixed;
 }
@@ -27,7 +27,7 @@ body {
 
 .imagen-izquierdaR {
 
-  width: 581px; /* Esto hará que la imagen ocupe la mitad del contenedor */
+  width: 690px; /* Esto hará que la imagen ocupe la mitad del contenedor */
   height: auto; /* Mantendrá la proporción de aspecto de la imagen */
   box-shadow: 5px 5px 10px #4545466b;
 }
@@ -47,7 +47,7 @@ body {
 
 .form_main2 {
   width: 400px; /* Ancho del formulario, ajusta según tus necesidades */
-  height: 550px;
+  height: 650px;
   display: flex;
   flex-direction: column;
   justify-content: center;

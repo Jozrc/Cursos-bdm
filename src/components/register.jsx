@@ -6,6 +6,16 @@ import miImagenR from "./images/registerBDM.png";
 
 
 const Register = ({user, setUser}) => {
+
+    const handleClick = e => {
+
+      setUser({
+        ...user,
+        [e.target.name]: e.target.value
+      })
+      console.log(user);
+    }
+
     return (
       <div className="container">
 
@@ -22,26 +32,26 @@ const Register = ({user, setUser}) => {
           <h5 className="user-passw">Last Name</h5>
           </div>
           <div className="inputContainer">
-            <input type="text" className="inputField2" />
-            <input type="text" className="inputField2" />
+            <input type="text" name="firstN" onChange={handleClick} className="inputField2" />
+            <input type="text" name="LastN" onChange={handleClick} className="inputField2" />
           </div>
           <h5 className="user-passw">User</h5>
           <div className="inputContainer">
-            <input type="text" className="inputField" />
+            <input type="text" name="user" onChange={handleClick} className="inputField" />
           </div>
           <h5 className="user-passw">Email</h5>
           <div className="inputContainer">
-            <input type="email" className="inputField" />
+            <input type="email" name="email" onChange={handleClick} className="inputField" />
           </div>
 
           <h5 className="user-passw">Password</h5>
           <div className="inputContainer">
-            <input type="password" className="inputField" />
+            <input type="password" name="password" onChange={handleClick} className="inputField" />
           </div>
 
           <h5 className="user-passw">Contact Number</h5>
           <div className="inputContainer">
-            <input type="gmail" className="inputField" />
+            <input type="gmail" name="Cnumber" onChange={handleClick} className="inputField" />
           </div>
   
           <div className="user-passw-container">
@@ -49,8 +59,8 @@ const Register = ({user, setUser}) => {
           <h5 className="user-passw">Gender</h5>
           </div>
           <div className="inputContainer">
-            <input type="date" className="inputField2" />
-            <input type="text" className="inputField2" />
+            <input type="date" name="birtday" onChange={handleClick} className="inputField2" />
+            <input type="text" name="gender" onChange={handleClick} className="inputField2" />
           </div>
 
           <Link to="/"><button className="button">Submit</button></Link>

@@ -41,7 +41,7 @@ function NavScrollExample() {
             />
             <button className="button-search" >Buscar</button>
           </Form>
-          <Nav.Link href="/login" className="ms-2" style={{ color: "red" }}>Log In</Nav.Link>
+          <Nav.Link href="/login" className="ms-2" style={{ color: "#ff58b9" }}>Log In</Nav.Link>
         </Navbar.Collapse>
       </Container>
     </Navbar>

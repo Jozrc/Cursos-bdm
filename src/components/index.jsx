@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from 'react-router-dom';
+import './Styles/index.css';
 
 export const Index = () => {
     

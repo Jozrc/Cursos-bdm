@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
-//import miImagen from "./images/banmer.jpg";
+import miImagen from "./images/registerBDM.png";
 //import Imagenlogo from "./images/register.png";
 import './Styles/index.css';
 
@@ -22,16 +22,16 @@ function HeaderAndFooterExample() {
 <div>
     <div className='baner'>
         <h2 className='subt'>
-          Welcome
+          Bienvenido
         </h2>
     </div>
 
 <div>
   <ul className="opciones">
-    <li>Bodas</li>
-    <li>Paquetes</li>
-    <li>Ofertas</li>
-    <li>Restaurantes</li>
+    <li>Electronica</li>
+    <li>Comestibles</li>
+    <li>Videojuegos</li>
+    <li>Peliculas</li>
   </ul>
 </div>
 
@@ -41,20 +41,19 @@ function HeaderAndFooterExample() {
       
      <div id="imagen-contenedor" onClick={toggleAmpliar1}>
      <img
-      // src={miImagen}
+      src={miImagen}
        alt="Descripción de la imagen" 
        id="imagen" 
        className={`imagen-planner ${ampliarImagen1 ? "ampliada" : ""}`} // Aplica el estilo de zoom a la imagen
        />
      </div>
 
-     <h1 className="titulo-planner">Titulo-Nombre</h1>
-     <p className="descripcion">Descripcion: 
-     Bienvenidos a "Amor Eterno", un evento mágico diseñado y coordinado por nuestro experimentado equipo
-     de wedding planners. Esta es una celebración única y personalizada que marca el inicio de una vida
-     juntos llena de amor y promesas. En "Amor Eterno", creamos un entorno encantador donde los sueños se
-     hacen realidad y los corazones se unen en un día inolvidable.</p>
-     <Link to="/Carrito"><button className="button-planner">Ver más</button></Link>
+     <h1 className="titulo-planner">Producto 1</h1>
+     <p className="descripcion">
+     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
+     ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+     Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+     <Link to="/Carrito"><button className="button-planner">Agregar</button></Link>
      
      
      </div>
@@ -63,20 +62,19 @@ function HeaderAndFooterExample() {
 
     <div id="imagen-contenedor" onClick={toggleAmpliar2}>
      <img
-      // src={miImagen}
+      src={miImagen}
        alt="Descripción de la imagen" 
        id="imagen" 
        className={`imagen-planner ${ampliarImagen2 ? "ampliada" : ""}`} // Aplica el estilo de zoom a la imagen
        />
      </div>
 
-     <h1 className="titulo-planner">Titulo-Nombre</h1>
-     <p className="descripcion">Descripcion: 
-     Bienvenidos a "Amor Eterno", un evento mágico diseñado y coordinado por nuestro experimentado equipo
-     de wedding planners. Esta es una celebración única y personalizada que marca el inicio de una vida
-     juntos llena de amor y promesas. En "Amor Eterno", creamos un entorno encantador donde los sueños se
-     hacen realidad y los corazones se unen en un día inolvidable.</p>
-     <Link to="/Carrito"><button className="button-planner">Ver más</button></Link>
+     <h1 className="titulo-planner">Producto 2</h1>
+     <p className="descripcion">
+     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
+     ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+     Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+     <Link to="/Carrito"><button className="button-planner">Agregar</button></Link>
      
      </div>
 

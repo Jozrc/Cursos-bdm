@@ -12,7 +12,7 @@ function NavScrollExample() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
-        <Navbar.Brand href="/" className="Nav-titulo">Wedding planner</Navbar.Brand>
+        <Navbar.Brand href="/" className="Nav-titulo">BisonGO</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
@@ -20,8 +20,8 @@ function NavScrollExample() {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="#action2">Profile</Nav.Link>
+            <Nav.Link href="/">Pagina Principal</Nav.Link>
+            <Nav.Link href="#action2">Perfil</Nav.Link>
             <NavDropdown title="Más" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#action3">Compras</NavDropdown.Item>
               <NavDropdown.Item href="#action4">
@@ -39,9 +39,9 @@ function NavScrollExample() {
               className="me-2"
               aria-label="Search"
             />
-            <button className="button-search" >Search</button>
+            <button className="button-search" >Buscar</button>
           </Form>
-          <Nav.Link href="/login" className="ms-2" style={{ color: "red" }}>Login</Nav.Link>
+          <Nav.Link href="/login" className="ms-2" style={{ color: "red" }}>Log In</Nav.Link>
         </Navbar.Collapse>
       </Container>
     </Navbar>

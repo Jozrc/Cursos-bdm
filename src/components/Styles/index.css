@@ -1,5 +1,5 @@
 .baner{
-    background-image: url(E:\FCFM\7mo_y_8vo_Semestre\WEB-2\front-web2\src\components\images\banmer.jpg);
+    background-image: url(C:\PIA\Front\front-bdm\src\components\images\bannerindex.jpg);
     width: 100%;
     height: 40vh;
     box-shadow: 0px 1px 30px 5px #2e2e2e3f;
@@ -34,7 +34,7 @@
   }
   
   .opciones li:hover {
-    color: #d3694b;
+    color: #94e0ca; 
     transition: 0.4s;
     font-size: 2em;
   }
@@ -49,14 +49,14 @@
   }
   
   .planner{
-    background-color: #ffd0c3;
+    background-color: #ff98d4;
     position: relative; /* Establece el posicionamiento relativo */
     width: 100%; /* Asegura que el contenedor ocupa todo el ancho del padre */
     height: 320px; /* Asegura que el contenedor ocupa todo el alto del padre */
     margin-top: 10%;
     border-radius: 15px;
     bottom: 140px;
-    box-shadow: 5px 5px 3px #c99688;
+    box-shadow: 5px 5px 3px #f59ac7;
     transition: transform 0.5s; /* Agrega una transición suave para animar el cambio de tamaño */
   }
   
@@ -83,7 +83,7 @@
   .titulo-planner{
     font-family: 'Times New Roman', Times, serif;
     font-weight: bolder;
-    color: #8b6359;
+    color: #ffffff;
     width: 50%; /* Establece el ancho del texto al 50% del contenedor */
     padding: 10px;
     text-align: center;
@@ -100,7 +100,7 @@
     width: 15%;
     box-sizing: border-box;
     border: none;
-    background-color:#755946;
+    background-color:#94e0ca; 
     color: white;
     font-size: 1.5em;
     font-weight: 500;
@@ -111,20 +111,22 @@
   }
   
   .button-planner:hover {
-    background-color: #d3694b;
+    background-color: #40b995;
     box-shadow: none;
+    box-shadow: 2px 2px 1px rgb(68, 56, 49);
+    
   }
   
   .button-search{
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #d3694b;
+    background-color: #ff98d4;
     border-radius: 12px;
     border-color: rgba(255, 255, 255, 0);
     color: white;
   }
   
   .button-search:hover{
-    border-color: #d3694b;
+    border-color: #ff98d4;
     background-color: rgba(255, 255, 255, 0);
-    color: #d3694b;
+    color: #ff98d4;
   }

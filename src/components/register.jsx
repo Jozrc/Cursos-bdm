@@ -95,20 +95,19 @@ const Register = () => {
 
 
     return (
-      <div className="container">
+      <div className="container-register">
 
       <div className="center-container">
 
         <img src={miImagenR} alt="Descripción de la imagen" className="imagen-izquierdaR"/>
 
-        <form action="" className="form_main2" onSubmit={handleSubmit}>
+        <form action="" className="form_register" onSubmit={handleSubmit}>
           <h1 className="heading2">Register</h1>
 
           
-          <div className="user-passw-container">
           <h5 className="user-passw">First Name</h5>
           <h5 className="user-passw">Last Name</h5>
-        </div>
+   
         <div className="inputContainer">
           <input
             type="text"
@@ -130,6 +129,7 @@ const Register = () => {
           <div className="inputContainer">
             <input type="text" name="user" onChange={(e) => setUser(e.target.value)} className="inputField" />
           </div>
+
           <h5 className="user-passw">Email</h5>
           <div className="inputContainer">
             <input type="email" name="email" onChange={(e) => setEmail(e.target.value)} className="inputField" />
@@ -175,9 +175,7 @@ const Register = () => {
 
         </form>
       </div>
-
       </div>
-
     );
   };
   

@@ -106,24 +106,14 @@ const Register = () => {
 
           
           <h5 className="user-passw">First Name</h5>
+          <div className="inputContainer">
+            <input type="text" name="firstN" onChange={(e) => setFirstName(e.target.value)} className="inputField" />
+          </div>
+
           <h5 className="user-passw">Last Name</h5>
-   
-        <div className="inputContainer">
-          <input
-            type="text"
-            name="firstN"
-            onChange={(e) => setFirstName(e.target.value)}
-            className="inputField2"
-          />
-          <span className="error">{errors.firstN}</span> {/* Mostrar error */}
-          <input
-            type="text"
-            name="LastN"
-            onChange={(e) => setLastName(e.target.value)}
-            className="inputField2"
-          />
-          <span className="error">{errors.LastN}</span> {/* Mostrar error */}
-        </div>
+          <div className="inputContainer">
+            <input type="text" name="LastN" onChange={(e) => setLastName(e.target.value)} className="inputField" />
+          </div>
 
           <h5 className="user-passw">User</h5>
           <div className="inputContainer">

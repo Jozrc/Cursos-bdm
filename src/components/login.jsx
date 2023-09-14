@@ -5,7 +5,7 @@ import miImagen from "./images/LoginBDM.jpeg";
 
 const Login = () => {
     return (
-      <div className="container">
+      <div className="container-login">
 
       <div className="center-container">
 

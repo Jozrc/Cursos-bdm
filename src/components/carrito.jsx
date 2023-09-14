@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import miImagen from "./images/registerBDM.png";
-
 import { Link } from 'react-router-dom';
 import './Styles/Carrito.css';
 

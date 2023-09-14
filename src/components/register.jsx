@@ -5,40 +5,43 @@ import miImagen from "./images/LoginBDM.jpeg";
 import miImagenR from "./images/registerBDM.png";
 
 
-const Register = ({user, setUser}) => {
+const Register = ({user}) => {  //, setUser
 
     const handleClick = e => {
 
-      setUser({
+   /*   setUser({
         ...user,
         [e.target.name]: e.target.value
       })
-      console.log(user);
-    }
+      console.log(user); */
+    } 
 
     return (
-      <div className="container">
+      <div className="container-register">
 
       <div className="center-container">
 
         <img src={miImagenR} alt="Descripción de la imagen" className="imagen-izquierdaR"/>
 
-        <form action="" className="form_main2">
+        <form action="" className="form_register">
           <h1 className="heading2">Register</h1>
 
           
-          <div className="user-passw-container">
           <h5 className="user-passw">First Name</h5>
-          <h5 className="user-passw">Last Name</h5>
-          </div>
           <div className="inputContainer">
-            <input type="text" name="firstN" onChange={handleClick} className="inputField2" />
-            <input type="text" name="LastN" onChange={handleClick} className="inputField2" />
+            <input type="text" name="firstN" onChange={handleClick} className="inputField" />
           </div>
+
+          <h5 className="user-passw">Last Name</h5>
+          <div className="inputContainer">
+            <input type="text" name="LastN" onChange={handleClick} className="inputField" />
+          </div>
+
           <h5 className="user-passw">User</h5>
           <div className="inputContainer">
             <input type="text" name="user" onChange={handleClick} className="inputField" />
           </div>
+
           <h5 className="user-passw">Email</h5>
           <div className="inputContainer">
             <input type="email" name="email" onChange={handleClick} className="inputField" />

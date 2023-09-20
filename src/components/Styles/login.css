@@ -1,39 +1,67 @@
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100%;
   height: 100vh;
   background-image: url("E:\pruebas\proyectobdm\front-bdm\public\fondoBDM.jpg");
-
   background-size: cover;
   background-attachment: fixed;
 }
 
-.container {
-  display: flex; /* Utiliza flexbox para alinear elementos horizontalmente */
+@media screen and (max-width: 720px) {
+  .imagen-izquierda {
+    display: none; /* Ocultar la imagen */
+  }
+
+  .imagen-izquierdaR {
+    display: none; /* Ocultar la imagen */
+  }
+
 }
+
+
+.custom-link {
+  color: #ff0000; /* Cambia el color a rojo (puedes usar cualquier valor de color que desees) */
+}
+
+.container-login {
+  margin-top: 3%;
+  display: flex; /* Utiliza flexbox para alinear elementos horizontalmente */
+  justify-content: center;
+  align-items: center;
+}
+
+.container-register {
+  margin-top: 2%;
+  display: flex; /* Utiliza flexbox para alinear elementos horizontalmente */
+  justify-content: center;
+  align-items: center;
+}
+
 
 .center-container {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .imagen-izquierda {
 
   width: 300px; /* Esto hará que la imagen ocupe la mitad del contenedor */
   height: auto; /* Mantendrá la proporción de aspecto de la imagen */
-  box-shadow: 5px 5px 10px #4545466b;
+  box-shadow: 5px 5px 20px #4545466b;
+
 }
 
 .imagen-izquierdaR {
 
-  width: 690px; /* Esto hará que la imagen ocupe la mitad del contenedor */
+  width: 544px; /* Esto hará que la imagen ocupe la mitad del contenedor */
   height: auto; /* Mantendrá la proporción de aspecto de la imagen */
-  box-shadow: 5px 5px 10px #4545466b;
+  margin-bottom: 10%;
+  box-shadow: 5px 5px 20px #4545466b;
+
 }
 
 .form_main {
+
   width: 280px; /* Ancho del formulario, ajusta según tus necesidades */
   height: 425px;
   display: flex;
@@ -41,27 +69,47 @@ body {
   justify-content: center;
   background-color: rgb(255, 255, 255);
   padding: 30px 30px 30px 30px;
-  box-shadow: 5px 5px 10px #4545466b;
+  box-shadow: 5px 5px 20px #4545466b;
   position: relative;
   overflow: hidden;
 }
 
 .form_main2 {
-  width: 400px; /* Ancho del formulario, ajusta según tus necesidades */
-  height: 650px;
+
+  width:450px; /* Ancho del formulario, ajusta según tus necesidades */
+  height: 700px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   background-color: rgb(255, 255, 255);
   padding: 30px 30px 30px 30px;
-  box-shadow: 5px 5px 10px #4545466b;
+  box-shadow: 5px 5px 20px #4545466b;
   position: relative;
   overflow: hidden;
 }
 
+.form_register {
+  width: 50%; /* Ancho del formulario, ajusta según tus necesidades */
+  margin-bottom: 10%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgb(255, 255, 255);
+  padding: 30px 30px 30px 30px;
+  box-shadow: 5px 5px 20px #4545466b;
+  position: relative;
+  overflow: hidden;
+}
+  
+@font-face {
+  font-family: 'Freehand-Regular';
+  src:url(/src/components/Fuentes/Freehand-Regular.ttf); 
+}
+
 .heading {
   /* Establece el título "Login" para que esté centrado y más arriba */
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: 'Freehand-Regular';
   font-size: 4em;
   color: #40b995;
   font-weight: 700;
@@ -90,7 +138,7 @@ body {
     width: 100%;
     height: 30px;
     background-color: white;
-    border: 2px solid #94e0ca;
+    border: 2px solid #40b995;
     margin: 5px 0px;
     color: rgb(125, 125, 125);
     font-size: 1em;
@@ -104,7 +152,7 @@ body {
     width: 163px;
     height: 30px;
     background-color: white;
-    border: 2px solid #94e0ca;
+    border: 2px solid #40b995;
     margin: 5px 8px;
     color: rgb(125, 125, 125);
     font-size: 1em;
@@ -115,14 +163,14 @@ body {
   }
   
   .inputField:focus {
-    border: 2px solid #f59ac7; /* Cambia el color del borde al enfocar */
+    border: 2px solid #f59ac7;  /* Cambia el color del borde al enfocar */
   }
 
   .button {
     position:  center;
     width: 100%;
     border: none;
-    background-color: #ff98d4;
+    background-color: #94e0ca; 
     color: white;
     font-size: 1.5em; /* Aumenta el tamaño de la fuente */
     font-weight: 500;
@@ -132,16 +180,16 @@ body {
   }
   
   .button:hover {
-    background-color: #94e0ca;
+    background-color: #40b995;
   }
   
   .forgotLink {
     font-family: 'Arial', sans-serif; /* Establece la fuente Arial como primera opción */
     font-weight: bold; /* Establece la negrita */
     font-size:0.8em;
-    color: #40b995;
+    color: #94e0ca; 
     text-decoration: none;
-    text-align: right;
+    text-align: center;
   }
 
 .user-passw {
@@ -156,7 +204,7 @@ body {
 }
 
 .RegisterLink {
-  color: #ff98d4;
+  color: #40b995;
   font-family: 'Arial', sans-serif; /* Establece la fuente Arial como primera opción */
   font-weight: bold; /* Establece la negrita */
   font-size: 1em;

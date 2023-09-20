@@ -59,22 +59,13 @@ function App() {
   localStorage.setItem('token', token);
   }, [token]);
 
+
   const location = useLocation();
-
-  // Verificar si la ruta actual es
-  const isLoginPage = location.pathname === "/login";
-  const isRegisterPage = location.pathname === "/register";
-
-  // Mostrar NavbarReact solo si no estás en la página de inicio de sesión o registro
-  const showNavbar = !isLoginPage && !isRegisterPage;
-
-  // Mostrar Footer solo si no estás en la página de inicio de sesión o registro
-  const showFooter = !isLoginPage && !isRegisterPage;
 
   return (
     <div className="App">
       {/* Renderizar NavbarReact solo si no estás en la página de inicio de sesión */}
-      {showNavbar && <NavbarReact  user={user} setUser={setUser} setToken={setToken}/>}
+      {location.pathname !== "/login" && location.pathname !== "/register" && (<NavbarReact  user={user} setUser={setUser} setToken={setToken}/>)}
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/Carrito" element={<Carrito />} />
@@ -82,7 +73,7 @@ function App() {
         <Route path="/register" element={<Register user = {user} setUser = {setUser}/>} />
       </Routes>
 
-      {showFooter && <Footer />}
+      {location.pathname !== "/login" && location.pathname !== "/register" && (<Footer />)}
     </div>
   );
 }

@@ -65,7 +65,9 @@ function App() {
   return (
     <div className="App">
       {/* Renderizar NavbarReact solo si no estás en la página de inicio de sesión */}
-      {location.pathname !== "/login" && location.pathname !== "/register" && (<NavbarReact  user={user} setUser={setUser} setToken={setToken}/>)}
+      {location.pathname !== "/login" && location.pathname !== "/register" && (
+        <NavbarReact  user={user} setUser={setUser} setToken={setToken}/>
+      )}
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/Carrito" element={<Carrito />} />
@@ -73,7 +75,9 @@ function App() {
         <Route path="/register" element={<Register user = {user} setUser = {setUser}/>} />
       </Routes>
 
-      {location.pathname !== "/login" && location.pathname !== "/register" && (<Footer />)}
+      {location.pathname !== "/login" && location.pathname !== "/register" && (
+        <Footer />
+      )}
     </div>
   );
 }

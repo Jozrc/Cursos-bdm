@@ -4,6 +4,7 @@ import Footer from "./components/footer.jsx";
 import NavbarReact from "./components/nav.jsx";
 import Login from "./components/login.jsx";
 import Register from "./components/register.jsx";
+import Producto from "./components/producto.jsx";
 import Carrito from "./components/carrito.jsx"; 
 import { Route, Routes, useLocation } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css'
@@ -73,6 +74,7 @@ function App() {
         <Route path="/Carrito" element={<Carrito />} />
         <Route path="/login" element={<Login user={user} setUser={setUser} setToken={setToken}/>} />
         <Route path="/register" element={<Register user = {user} setUser = {setUser}/>} />
+        <Route path="/producto" element={<Producto />} />
       </Routes>
 
       {location.pathname !== "/login" && location.pathname !== "/register" && (

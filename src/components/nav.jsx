@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from 'react-router-dom';
 import './Styles/nav.css';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -29,6 +28,14 @@ export const NavbarReact = () => {
               </NavDropdown.Item>
               <NavDropdown.Item href="#action5">
                 Chats
+              </NavDropdown.Item>
+            </NavDropdown>
+            <NavDropdown title="Opciones de vendedor" id="navbarScrollingDropdown">
+              <NavDropdown.Item href="#action3">
+                Crear producto
+              </NavDropdown.Item>
+              <NavDropdown.Item href="#action4">
+                Editar producto
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>

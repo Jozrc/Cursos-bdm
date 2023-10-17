@@ -31,7 +31,7 @@ export const NavbarReact = () => {
               </NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="Opciones de vendedor" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">
+              <NavDropdown.Item href="/producto">
                 Crear producto
               </NavDropdown.Item>
               <NavDropdown.Item href="#action4">

@@ -6,7 +6,7 @@ function Producto(){
 
     const [rating, setRating] = useState(null);
     const [hover, setHover] = useState(null)
-    
+    const [imagen, setImagen] = useState(null); 
     
 
     return(
@@ -14,7 +14,7 @@ function Producto(){
             <form>
                 <div className="container">
                     <div>
-                        Producto:
+                        Nombre:
                         <input type="text"/>
                     </div>
                     <div>
@@ -29,6 +29,7 @@ function Producto(){
                         Cantidad disponible:
                         <input type="number"/>
                     </div>
+
                     <div className="star-widgeet">
                         Rating:
                         {[...Array(5)].map((star, index) => {
@@ -57,6 +58,23 @@ function Producto(){
                         {/* <input type="radio" name="rate" className="rate" id="rate-5"/>
                         <label for="rate-5" className="fas fa-star"></label> */}
                     </div>
+
+                    <div>
+                        <div className="image-container ">
+                            Cargar imagen:
+                            <input className="image-container input" type="file" /*onChange={cargarImagen} */ />
+                        </div>
+                        {imagen && (
+                            <div>
+                                <img src={imagen} alt="Producto" />
+                            </div>
+                        )}
+                    </div>
+
+                    <div className="boton-guardar">
+                    <button /* onClick={guardarProducto}*/>Guardar Producto</button> 
+                    </div>
+
                 </div>
                 
             </form>

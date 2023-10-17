@@ -75,6 +75,18 @@ function Producto(){
                     <button /* onClick={guardarProducto}*/>Guardar Producto</button> 
                     </div>
 
+                    <div className="select-product">
+                        <label htmlFor="products">Editar:</label>
+                        <select id="products" /*</div>onChange={seleccionarProducto}*/>
+                            <option value="">--Seleccione un producto--</option>
+                            <option value="producto1">Producto 1</option>
+                            <option value="producto2">Producto 2</option>
+                            <option value="producto3">Producto 3</option>
+                            {/* Agrega más opciones de productos según sea necesario */}
+                        </select>
+                    </div>
+
+
                 </div>
                 
             </form>

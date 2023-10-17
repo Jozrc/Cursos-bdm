@@ -65,3 +65,7 @@
     font-size: 13px;
     color: #fdfdfd;
   }
+
+  .list{
+    justify-content: center;
+  }

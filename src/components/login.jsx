@@ -1,70 +1,44 @@
-import React from "react";
-import { useNavigate, Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 import './Styles/login.css';
 import miImagen from "./images/LoginBDM.jpeg";
 
-const Login = ({user, setUser, setToken}) => {
+const Login = () => {
+  // Define estados para almacenar los valores de los campos de entrada
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-    const handleClick = e => {
-      const { name, value } = e.target;
-      setUser({ ...user, [name]: value });
-      console.log(user)
+  // Función para manejar el envío del formulario
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Evita la recarga de la página
+
+    // Aquí puedes realizar validaciones y procesamiento de datos
+    if (username.trim() === "") {
+      alert("Por favor, ingresa un nombre de usuario.");
+      return;
     }
 
-    let { usuario, contrasena } = user
-
-    const navigate = useNavigate();
-
-    const handleSubmit = e => { 
-
-      e.preventDefault();
-
-      if ( usuario === '' || contrasena === '' ) {
-          alert('Todos los campos son obligatorios')
-          return
-      }
-
-      const user = { usuario, contrasena };
-      
-       //fetch
-      const requestInit = {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify(user),
-      }
-
-      fetch('http://localhost:5000/login', requestInit)
-      .then ((res) => res.json())
-      .then ((res) => {
-          if (res.token) {
-              setToken(res.token);
-              navigate('/');
-              
-
-              setUser({
-                  name: '',
-                  password: ''
-              });
-
-          } else {
-              console.log('Login failed!'); 
-
-              alert('User doesnt exists')
-       
-          }
-           
-      })
-
-     
+    if (password.trim() === "") {
+      alert("Por favor, ingresa una contraseña.");
+      return;
     }
+
+    // Ahora puedes enviar los datos al servidor o realizar otras acciones necesarias
+    // Por ejemplo, podrías enviar los datos a través de una solicitud HTTP
+
+    console.log("Nombre de usuario:", username);
+    console.log("Contraseña:", password);
+
+    window.location.href = "http://localhost:3000/";
+    // Luego puedes redirigir al usuario a otra página, si es necesario
+    // Ejemplo: history.push('/dashboard');
+  };
 
   return (
     <div className="container-login">
       <div className="center-container">
-
-        <img src={miImagen} alt="Descripción de la imagen" className="imagen-izquierda"/>
-
-        <form onSubmit={handleSubmit}  className="form_main">
+        <img src={miImagen} alt="Descripción de la imagen" className="imagen-izquierda" />
+        <form onSubmit={handleSubmit} className="form_main">
           <h1 className="heading">Login</h1>
           <h5 className="user-passw">Username</h5>
           <div className="inputContainer">

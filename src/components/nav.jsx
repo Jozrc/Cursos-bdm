@@ -60,4 +60,4 @@ function NavScrollExample() {
 
 };
 
-export default NavbarReact;
+export default NavScrollExample;

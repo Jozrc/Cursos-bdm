@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import './Styles/login.css';
 import miImagen from "./images/LoginBDM.jpeg";
 import miImagenR from "./images/registerBDM.png";
-import { useNavigate } from 'react-router-dom';
 
 
 const Register = () => {

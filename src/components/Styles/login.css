@@ -5,7 +5,16 @@ body {
   background-size: cover;
   background-attachment: fixed;
 }
+ 
+@media screen and (max-width: 720px) {
+  .imagen-izquierda {
+    display: none; /* Ocultar la imagen */
+  }
 
+  .imagen-izquierdaR {
+    display: none; /* Ocultar la imagen */
+  }
+}
 @media screen and (max-width: 720px) {
   .imagen-izquierda {
     display: none; /* Ocultar la imagen */
@@ -74,10 +83,10 @@ body {
   overflow: hidden;
 }
 
-.form_main2 {
-
-  width:450px; /* Ancho del formulario, ajusta según tus necesidades */
-  height: 700px;
+.form_register {
+  width: 50%; /* Ancho del formulario, ajusta según tus necesidades */
+  margin-bottom: 10%;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -86,6 +95,11 @@ body {
   box-shadow: 5px 5px 20px #4545466b;
   position: relative;
   overflow: hidden;
+}
+  
+@font-face {
+  font-family: 'Freehand-Regular';
+  src:url(/src/components/Fuentes/Freehand-Regular.ttf); 
 }
 
 .form_register {

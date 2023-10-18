@@ -58,36 +58,42 @@ const Login = ({user, setUser, setToken}) => {
      
     }
 
-    return (
-      <div className="container">
-
+  return (
+    <div className="container-login">
       <div className="center-container">
 
         <img src={miImagen} alt="Descripción de la imagen" className="imagen-izquierda"/>
 
         <form onSubmit={handleSubmit}  className="form_main">
           <h1 className="heading">Login</h1>
-
           <h5 className="user-passw">Username</h5>
           <div className="inputContainer">
-            <input type="text" className="inputField" name="usuario" id="username" onChange={handleClick}/>
+            <input
+              type="text"
+              className="inputField"
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
           </div>
-  
-          <h5 className="user-passw" onChange={handleClick}>Password</h5>
+          <h5 className="user-passw">Password</h5>
           <div className="inputContainer">
-            <input type="password" className="inputField" name="contrasena" id="password" />
+            <input
+              type="password"
+              className="inputField"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </div>
           <Link to="/" className="forgotLink">Forgot your password?</Link>
-  
-          <Link to="/"><button className="button">Submit</button></Link>
-          <p className="dont-account">Don´t have an account yet? </p>
+          <button className="button">Submit</button>
+          <p className="dont-account">Don't have an account yet? </p>
           <Link to="/register" className="RegisterLink">Create an account</Link>
-
         </form>
       </div>
+    </div>
+  );
+};
 
-      </div>
-    );
-  };
-  
-  export default Login;
+export default Login;

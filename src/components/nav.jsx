@@ -9,8 +9,11 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import './Styles/login.css';
 
 function NavScrollExample() {
-  return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+
+
+
+    return (
+        <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
         <Navbar.Brand href="/" className="Nav-titulo">BisonGO</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
@@ -21,7 +24,7 @@ function NavScrollExample() {
             navbarScroll
           >
             <Nav.Link href="/">Pagina Principal</Nav.Link>
-            <Nav.Link href="#action2">Perfil</Nav.Link>
+            <Nav.Link href="/Perfiles">Perfil</Nav.Link>
             <NavDropdown title="Más" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#action3">Compras</NavDropdown.Item>
               <NavDropdown.Item href="#action4">
@@ -29,6 +32,14 @@ function NavScrollExample() {
               </NavDropdown.Item>
               <NavDropdown.Item href="#action5">
                 Chats
+              </NavDropdown.Item>
+            </NavDropdown>
+            <NavDropdown title="Opciones de vendedor" id="navbarScrollingDropdown">
+              <NavDropdown.Item href="/producto">
+                Crear producto
+              </NavDropdown.Item>
+              <NavDropdown.Item href="#action4">
+                Editar producto
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
@@ -45,7 +56,8 @@ function NavScrollExample() {
         </Navbar.Collapse>
       </Container>
     </Navbar>
-  );
-}
+    );
+
+};
 
 export default NavScrollExample;

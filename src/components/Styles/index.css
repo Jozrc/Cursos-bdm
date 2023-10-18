@@ -34,7 +34,7 @@
   }
   
   .opciones li:hover {
-    color: #94e0ca; 
+    color: #ff0798; 
     transition: 0.4s;
     font-size: 2em;
   }
@@ -42,21 +42,20 @@
   .fondo{
       margin-top: -20px;
       padding: 10%; /* Agrega espacio dentro del elemento en lugar de márgenes laterales */
-      background-color: rgba(255, 255, 255, 0.493);
+      background-color: rgba(255, 255, 255, 0.075);
       backdrop-filter: blur(10px);
-      
       
   }
   
   .planner{
-    background-color: #ff98d4;
+    background-color: #ffa3d9;
     position: relative; /* Establece el posicionamiento relativo */
     width: 100%; /* Asegura que el contenedor ocupa todo el ancho del padre */
     height: 320px; /* Asegura que el contenedor ocupa todo el alto del padre */
     margin-top: 10%;
     border-radius: 15px;
     bottom: 140px;
-    box-shadow: 5px 5px 3px #f59ac7;
+    box-shadow: 5px 5px 3px #744c60;
     transition: transform 0.5s; /* Agrega una transición suave para animar el cambio de tamaño */
   }
   
@@ -90,6 +89,7 @@
   }
   
   .descripcion {
+    color: rgb(32, 32, 32);
     font-family: Arial, Helvetica, sans-serif;
     width: 50%; /* Establece el ancho del texto al 50% del contenedor */
     padding: 10px;
@@ -100,7 +100,7 @@
     width: 15%;
     box-sizing: border-box;
     border: none;
-    background-color:#94e0ca; 
+    background-color:#53b386; 
     color: white;
     font-size: 1.5em;
     font-weight: 500;
@@ -111,7 +111,7 @@
   }
   
   .button-planner:hover {
-    background-color: #40b995;
+    background-color: #82a3ff;
     box-shadow: none;
     box-shadow: 2px 2px 1px rgb(68, 56, 49);
     
@@ -129,4 +129,33 @@
     border-color: #ff98d4;
     background-color: rgba(255, 255, 255, 0);
     color: #ff98d4;
+  }
+
+  @media (max-width: 720px) {
+    .planner {
+      width: 90%;
+      margin-top: 30%;
+    }
+    
+    /* Ajustes para el contenedor del contenido de texto y botón en pantallas pequeñas */
+    .text-container {
+      max-width: 100%;
+      padding: 0 10px;
+      order: 2; /* Cambiamos el orden de aparición en la disposición flexbox */
+    }
+  
+    .imagen-planner {
+      display: none;
+    }
+  
+    .titulo-planner,
+    .descripcion,
+    .button-planner {
+      width: 100%;
+      text-align: center;
+    }
+  
+    .button-planner {
+      margin-left: 0;
+    }
   }

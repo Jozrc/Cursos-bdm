@@ -71,14 +71,14 @@ const Register = () => {
       return;
     }
 
-    // Validacion para campo de Numero
+    // Validacion para campo de Pass
 
-    if (!/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(email)) {
-      alert("Por favor, ingrese un formato de correo electronico valido.");
+    if ( !/(?=.*\d)(?=.*[A-Z])(?=.*[\W_]).{8,}/.test(pass)) {
+      alert("La contraseña debe contener al menos 8 caracteres, una letra mayúscula, un número y un carácter especial.");
       return;
     }
 
-        // Validación para el campo "Password"
+        // Validación para el campo "Numero"
 
     if (!/^\d+$/.test(cnumber)) {
           alert("Por favor, el numero de contacto solo puede tener caracteres numericos");

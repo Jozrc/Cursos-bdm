@@ -20,7 +20,7 @@ export const NavbarReact = () => {
             navbarScroll
           >
             <Nav.Link href="/">Pagina Principal</Nav.Link>
-            <Nav.Link href="#action2">Perfil</Nav.Link>
+            <Nav.Link href="/Perfiles">Perfil</Nav.Link>
             <NavDropdown title="Más" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#action3">Compras</NavDropdown.Item>
               <NavDropdown.Item href="#action4">

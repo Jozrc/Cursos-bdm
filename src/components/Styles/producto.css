@@ -20,6 +20,14 @@ body {
     margin-bottom: 200px;
 }
 
+/* Estilos del encabezado del perfil */
+.producto-header {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #454546;
+  }
+  
+
 /* Estilo de los campos de entrada */
 .container div {
     margin-bottom: 15px;

@@ -6,6 +6,7 @@ import Login from "./components/login.jsx";
 import Register from "./components/register.jsx";
 import Producto from "./components/producto.jsx";
 import Carrito from "./components/carrito.jsx"; 
+import Perfiles from "./components/perfiles.jsx"; 
 import { Route, Routes, useLocation } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css'
 
@@ -72,6 +73,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/Carrito" element={<Carrito />} />
+        <Route path="/Perfiles" element={<Perfiles />} />
         <Route path="/login" element={<Login user={user} setUser={setUser} setToken={setToken}/>} />
         <Route path="/register" element={<Register user = {user} setUser = {setUser}/>} />
         <Route path="/producto" element={<Producto />} />

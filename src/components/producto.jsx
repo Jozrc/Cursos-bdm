@@ -12,7 +12,15 @@ function Producto(){
     return(
         <div>
             <form>
+
+
+                
                 <div className="container">
+
+                <div className="producto-header">
+                <h1>Agrega tu Producto</h1>
+                </div>
+
                     <div>
                         Nombre:
                         <input type="text"/>

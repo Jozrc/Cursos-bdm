@@ -6,7 +6,7 @@ import Login from "./components/login.jsx";
 import Register from "./components/register.jsx";
 import Producto from "./components/producto.jsx";
 import Carrito from "./components/carrito.jsx"; 
-import Perfiles from "./components/perfiles.jsx"; 
+import Perfiles from "./components/perfiles.jsx";
 import { Route, Routes, useLocation } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css'
 
@@ -24,6 +24,18 @@ function App() {
     sexo:'',
     rol:''
   });
+
+  const [userdata, setUserdata] = useState({data:{user:{
+    id_user: '',
+    usuario:'', 
+    correo:'', 
+    contrasena:'', 
+    nombre:'', 
+    apellidoP:'', 
+    fnacimiento:'', 
+    sexo:'',
+    rol:''
+  }}});
 
   const [token, setToken] = useState('');
   
@@ -50,7 +62,7 @@ function App() {
       return res.json();
     })
     .then((data) => { 
-      setUser(data);
+      setUserdata(data);
       console.log(data);
 
     })
@@ -68,7 +80,7 @@ function App() {
     <div className="App">
       {/* Renderizar NavbarReact solo si no estás en la página de inicio de sesión */}
       {location.pathname !== "/login" && location.pathname !== "/register" && (
-        <NavbarReact  user={user} setUser={setUser} setToken={setToken}/>
+        <NavbarReact  userdata={userdata} setUserdata={setUserdata} setToken={setToken}/>
       )}
       <Routes>
         <Route path="/" element={<Index />} />
@@ -76,7 +88,7 @@ function App() {
         <Route path="/Perfiles" element={<Perfiles />} />
         <Route path="/login" element={<Login user={user} setUser={setUser} setToken={setToken}/>} />
         <Route path="/register" element={<Register user = {user} setUser = {setUser}/>} />
-        <Route path="/producto" element={<Producto />} />
+        <Route path="/producto" element={<Producto userdata={userdata} />} />
       </Routes>
 
       {location.pathname !== "/login" && location.pathname !== "/register" && (

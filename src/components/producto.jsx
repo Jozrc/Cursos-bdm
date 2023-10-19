@@ -2,43 +2,119 @@ import React, { useState } from "react";
 import { AiFillStar } from 'react-icons/ai'
 import "./Styles/producto.css"
 
-function Producto(){
+function Producto({userdata}){
 
     const [rating, setRating] = useState(null);
     const [hover, setHover] = useState(null)
-    const [imagen, setImagen] = useState(null); 
     
+    const [image, setImage] = useState(null);
+
+    const [producto, setproducto] = useState({
+        nombreP: '',
+        descripcion: '',
+        precio: '',
+        can_disp: '',
+    });
+
+    const { id_user } = userdata.data.user.id_user;
+
+    const handleText = e => {
+       
+        setproducto({
+          ...producto,
+          [e.target.name]: e.target.value
+        })
+        
+    }
+
+    const handleImageChange = (event) => {
+        const selectedImage = setImage(event.target.files[0]);
+
+        if (selectedImage) {
+            const maxSizeInBytes = 5 * 1024 * 1024; // 5MB
+            if (selectedImage.size > maxSizeInBytes) {
+                alert('Image size is too large. Please select a smaller image.');
+                event.target.value = null; // Clear the input
+                setImage(null); // Clear the state
+            } else {
+                setImage(selectedImage);
+            }
+        }
+    };
+
+    let {nombreP, descripcion, precio, can_disp} = producto;
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        if ( nombreP === '' || descripcion === '' || precio === '' || can_disp === '') {
+            alert('Todos los campos son obligatorios')
+            return
+        }
+
+        const formData = new FormData();
+        formData.append('id_user', id_user);
+        formData.append('nombreP', nombreP);
+        formData.append('descripcion', descripcion);
+        formData.append('precio', precio);
+        formData.append('can_disp', can_disp);
+        formData.append('img_prod', image);
+
+        const requestInit = {
+            method: 'POST',
+            body: JSON.stringify(formData)
+        }
+
+        fetch('http://localhost:5000/postProducto', requestInit)
+        .then ((res) => res.json())
+        .then ((res) => {
+            console.log(res);
+            window.location.reload(); 
+        })
+        .catch(err => { 
+            console.error(err)
+        })
+
+        setproducto({
+            nombreP: '',
+            descripcion: '',
+            precio: '',
+            can_disp: '',
+        })
+        
+        document.getElementById('fileinput').value = null;
+
+        console.log(formData);
+        setImage(null);
+    }
 
     return(
         <div>
-            <form>
-
-
-                
+            <form onSubmit={ handleSubmit }>
                 <div className="container">
-
-                <div className="producto-header">
-                <h1>Agrega tu Producto</h1>
-                </div>
-
                     <div>
-                        Nombre:
-                        <input type="text"/>
+                        Producto:
+                        <input type="text" name="nombreP" onChange={handleText}/>
                     </div>
                     <div>
                         Descripcion:
-                        <input type="textarea"/>
+                        <textarea type="text" name="descripcion" onChange={handleText}/>
                     </div>
                     <div>
                         Precio:
-                        <input type="number"/>
+                        <input type="number" name="precio" onChange={handleText}/>
                     </div>
                     <div>
                         Cantidad disponible:
-                        <input type="number"/>
+                        <input type="number" name="can_disp" onChange={handleText}/>
                     </div>
 
-                    <div className="star-widgeet">
+                    <div className="form-group">
+                                Load image: 
+                                <input type="file" className="form-control custom-input" accept="image/*" 
+                                onChange={handleImageChange} id='fileinput'/>
+                    </div>
+                    {/* <div className="star-widgeet">
                         Rating:
                         {[...Array(5)].map((star, index) => {
                             const currentRating = index + 1;
@@ -62,24 +138,10 @@ function Producto(){
                             );  
                             
                         })}
-                    
-                        {/* <input type="radio" name="rate" className="rate" id="rate-5"/>
-                        <label for="rate-5" className="fas fa-star"></label> */}
-                    </div>
-
-                    <div>
-                        <div className="image-container ">
-                            Cargar imagen:
-                            <input className="image-container input" type="file" /*onChange={cargarImagen} */ />
-                        </div>
-                        {imagen && (
-                            <div>
-                                <img src={imagen} alt="Producto" />
-                            </div>
-                        )}
-                    </div>
-
-                    <div className="boton-guardar">
+                
+                    </div> */}
+                </div>
+                <div className="boton-guardar">
                     <button /* onClick={guardarProducto}*/>Guardar Producto</button> 
                     </div>
 
@@ -93,10 +155,6 @@ function Producto(){
                             {/* Agrega más opciones de productos según sea necesario */}
                         </select>
                     </div>
-
-
-                </div>
-                
             </form>
         </div>
     );

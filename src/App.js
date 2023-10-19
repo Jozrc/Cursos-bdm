@@ -86,7 +86,7 @@ function App() {
         <Route path="/carrito" element={<Carrito />} />
         <Route path="/login" element={<Login user={user} setUser={setUser} setToken={setToken}/>} />
         <Route path="/register" element={<Register user = {user} setUser = {setUser}/>} />
-        <Route path="/producto" element={<Producto />} />
+        <Route path="/producto" element={<Producto userdata={userdata} />} />
       </Routes>
 
       {location.pathname !== "/login" && location.pathname !== "/register" && (

@@ -10,7 +10,7 @@ import './Styles/offcanvas.css'
 import Offcanvas from 'react-bootstrap/Offcanvas';
 
 export const NavbarReact = ({userdata, setUserdata, setToken}) => {
-    const { usuario,  } = userdata.data.user;
+    const { usuario, rol } = userdata.data.user;
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -42,7 +42,7 @@ export const NavbarReact = ({userdata, setUserdata, setToken}) => {
             navbarScroll
           >
             <Nav.Link href="/">Pagina Principal</Nav.Link>
-            {usuario ? ( 
+            {rol === 0 ? ( 
               <Nav
               className="me-auto my-2 my-lg-0"
               style={{ maxHeight: '100px' }}
@@ -67,7 +67,21 @@ export const NavbarReact = ({userdata, setUserdata, setToken}) => {
             </NavDropdown>
               </Nav>
            
-             ):(<></>)}
+             ): rol === 1 ? ( <Nav
+              className="me-auto my-2 my-lg-0"
+              style={{ maxHeight: '100px' }}
+              navbarScroll
+            >
+                <NavDropdown title="Más" id="navbarScrollingDropdown">
+              <NavDropdown.Item href="#action3">Compras</NavDropdown.Item>
+              <NavDropdown.Item href="#action4">
+                Historial de Pagos
+              </NavDropdown.Item>
+              <NavDropdown.Item href="#action5">
+                Chats
+              </NavDropdown.Item>
+            </NavDropdown>
+            </Nav>):(<></>)}
           </Nav>
           <Form className="d-flex">
             

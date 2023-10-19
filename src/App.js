@@ -84,7 +84,7 @@ function App() {
       )}
       <Routes>
         <Route path="/" element={<Index />} />
-        <Route path="/carrito" element={<Carrito />} />
+        <Route path="/Carrito" element={<Carrito />} />
         <Route path="/Perfiles" element={<Perfiles />} />
         <Route path="/login" element={<Login user={user} setUser={setUser} setToken={setToken}/>} />
         <Route path="/register" element={<Register user = {user} setUser = {setUser}/>} />

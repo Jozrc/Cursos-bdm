@@ -141,9 +141,20 @@ function Producto({userdata}){
                 
                     </div> */}
                 </div>
-                <div className="btn-group btn-group-toggle" data-toggle="buttons">
-                    <button type="submit" className="btn btn-secondary">Create</button>
-                </div> 
+                <div className="boton-guardar">
+                    <button /* onClick={guardarProducto}*/>Guardar Producto</button> 
+                    </div>
+
+                    <div className="select-product">
+                        <label htmlFor="products">Editar:</label>
+                        <select id="products" /*</div>onChange={seleccionarProducto}*/>
+                            <option value="">--Seleccione un producto--</option>
+                            <option value="producto1">Producto 1</option>
+                            <option value="producto2">Producto 2</option>
+                            <option value="producto3">Producto 3</option>
+                            {/* Agrega más opciones de productos según sea necesario */}
+                        </select>
+                    </div>
             </form>
         </div>
     );

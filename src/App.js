@@ -24,6 +24,18 @@ function App() {
     rol:''
   });
 
+  const [userdata, setUserdata] = useState({data:{user:{
+    id_user: '',
+    usuario:'', 
+    correo:'', 
+    contrasena:'', 
+    nombre:'', 
+    apellidoP:'', 
+    fnacimiento:'', 
+    sexo:'',
+    rol:''
+  }}});
+
   const [token, setToken] = useState('');
   
   useEffect(() => {
@@ -49,7 +61,7 @@ function App() {
       return res.json();
     })
     .then((data) => { 
-      setUser(data);
+      setUserdata(data);
       console.log(data);
 
     })
@@ -67,11 +79,11 @@ function App() {
     <div className="App">
       {/* Renderizar NavbarReact solo si no estás en la página de inicio de sesión */}
       {location.pathname !== "/login" && location.pathname !== "/register" && (
-        <NavbarReact  user={user} setUser={setUser} setToken={setToken}/>
+        <NavbarReact  userdata={userdata} setUserdata={setUserdata} setToken={setToken}/>
       )}
       <Routes>
         <Route path="/" element={<Index />} />
-        <Route path="/Carrito" element={<Carrito />} />
+        <Route path="/carrito" element={<Carrito />} />
         <Route path="/login" element={<Login user={user} setUser={setUser} setToken={setToken}/>} />
         <Route path="/register" element={<Register user = {user} setUser = {setUser}/>} />
         <Route path="/producto" element={<Producto />} />

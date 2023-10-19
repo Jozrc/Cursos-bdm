@@ -5,11 +5,12 @@ import miImagen from "./images/LoginBDM.jpeg";
 
 const Login = ({user, setUser, setToken}) => {
 
-    const handleClick = e => {
-      const { name, value } = e.target;
-      setUser({ ...user, [name]: value });
-      console.log(user)
-    }
+
+  const handleClick = e => {
+    const { name, value } = e.target;
+    setUser({ ...user, [name]: value });
+    console.log(user)
+}
 
     let { usuario, contrasena } = user
 
@@ -42,10 +43,9 @@ const Login = ({user, setUser, setToken}) => {
               
 
               setUser({
-                  name: '',
-                  password: ''
+                  usuario: '',
+                  contrasena: ''
               });
-
           } else {
               console.log('Login failed!'); 
 
@@ -75,11 +75,11 @@ const Login = ({user, setUser, setToken}) => {
   
           <h5 className="user-passw" onChange={handleClick}>Password</h5>
           <div className="inputContainer">
-            <input type="password" className="inputField" name="contrasena" id="password" />
+            <input type="password" className="inputField" name="contrasena" id="password" onChange={handleClick} />
           </div>
           <Link to="/" className="forgotLink">Forgot your password?</Link>
   
-          <Link to="/"><button className="button">Submit</button></Link>
+          <button className="button">Submit</button>
           <p className="dont-account">Don´t have an account yet? </p>
           <Link to="/register" className="RegisterLink">Create an account</Link>
 

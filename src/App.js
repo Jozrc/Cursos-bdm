@@ -10,7 +10,7 @@ import Perfiles from "./components/perfiles.jsx";
 import { Route, Routes, useLocation } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css'
 import EditarProducto from "./components/edit-producto.jsx";
-import elejirProducto from "./components/elejir-producto.jsx";
+import ElegirProducto from "./components/elegir-producto.jsx";
 
 
 
@@ -91,7 +91,7 @@ function App() {
         <Route path="/login" element={<Login user={user} setUser={setUser} setToken={setToken}/>} />
         <Route path="/register" element={<Register user = {user} setUser = {setUser}/>} />
         <Route path="/producto" element={<Producto userdata={userdata} />} />
-        <Route path="/editarproducto" element={<elejirProducto/>}/>
+        <Route path="/editarproducto" element={<ElegirProducto userdata={userdata}/>}/>
         <Route path="/editarproducto/:id" element={<EditarProducto/>}/>
       </Routes>
 

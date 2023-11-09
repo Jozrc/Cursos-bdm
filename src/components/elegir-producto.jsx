@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { AiFillStar } from 'react-icons/ai'
+import { Link } from 'react-router-dom';
 import "./Styles/producto.css"
 
-function elejirProducto(){
 
-   
+function ElegirProducto({userdata}){
+
+    const [selectedImageIndex, setSelectedImageIndex] = useState(null);
+
+    const toggleAmpliar1 = (index) => {
+        setSelectedImageIndex(index === selectedImageIndex ? null : index);
+      };
+
     const [productoData, setproductoData] = useState([{}])
 
     useEffect ( () => { 
@@ -68,4 +75,4 @@ function elejirProducto(){
     );
 }
 
-export default elejirProducto;
+export default ElegirProducto;

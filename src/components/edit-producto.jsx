@@ -2,49 +2,9 @@ import React, { useState } from "react";
 import { AiFillStar } from 'react-icons/ai'
 import "./Styles/producto.css"
 
-function Producto({userdata}){
-
-    const [rating, setRating] = useState(null);
-    const [hover, setHover] = useState(null)
-    
-    const [image, setImage] = useState(null);
-
-    const [producto, setproducto] = useState({
-        nombreP: '',
-        descripcion: '',
-        precio: '',
-        cant_disp: '',
-    });
+function EditarProducto(){
 
     
-
-    const handleText = e => {
-       
-        setproducto({
-          ...producto,
-          [e.target.name]: e.target.value
-        })
-        console.log(producto)
-    }
-
-    const handleImageChange = (event) => {
-        const selectedImage = setImage(event.target.files[0]);
-
-        if (selectedImage) {
-            const maxSizeInBytes = 5 * 1024 * 1024; // 5MB
-            if (selectedImage.size > maxSizeInBytes) {
-                alert('Image size is too large. Please select a smaller image.');
-                event.target.value = null; // Clear the input
-                setImage(null); // Clear the state
-            } else {
-                setImage(selectedImage);
-            }
-        }
-    };
-
-    let {nombreP, descripcion, precio, cant_disp} = producto;
-    const  id_user  = userdata.data.user.id_user;
-   
     const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -52,29 +12,6 @@ function Producto({userdata}){
             alert('Todos los campos son obligatorios')
             return
         }
-
-        const formData = new FormData();
-        formData.append('id_user', id_user);
-        formData.append('nombreP', nombreP);
-        formData.append('descripcion', descripcion);
-        formData.append('precio', precio);
-        formData.append('cant_disp', cant_disp);
-        formData.append('img_prod', image);
-
-        const requestInit = {
-            method: 'POST',
-            body: formData
-        }
-
-        fetch('http://localhost:5000/postProducto', requestInit)
-        .then ((res) => res.json())
-        .then ((res) => {
-            console.log(res);
-            window.location.reload(); 
-        })
-        .catch(err => { 
-            console.error(err)
-        })
 
         setproducto({
             nombreP: '',
@@ -151,4 +88,4 @@ function Producto({userdata}){
     );
 }
 
-export default Producto;
+export default EditarProducto;

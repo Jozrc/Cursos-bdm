@@ -49,19 +49,19 @@ export const NavbarReact = ({userdata, setUserdata, setToken}) => {
               navbarScroll
             >
               <NavDropdown title="Más" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Compras</NavDropdown.Item>
+              <NavDropdown.Item href="#action3">Mis compras</NavDropdown.Item>
               <NavDropdown.Item href="#action4">
                 Historial de Pagos
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action5">
-                Chats
+              <NavDropdown.Item href="/carrito">
+                Carrito
               </NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="Opciones de vendedor" id="navbarScrollingDropdown">
               <NavDropdown.Item href="/producto">
                 Crear producto
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
+              <NavDropdown.Item href="/editarproducto">
                 Editar productos
               </NavDropdown.Item>
             </NavDropdown>

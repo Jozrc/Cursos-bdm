@@ -101,6 +101,24 @@ function EditarProducto(){
         console.log(formData);
     }
 
+    const handleSubmitDelete = (event) => {
+        event.preventDefault();
+
+        const requestInit = {
+            method: 'DELETE'
+        }
+
+        fetch(`http://localhost:5000/deleteProduto/${id}`, requestInit)
+        .then ((res) => res.json())
+        .then ((res) => {
+            console.log(res);
+        })
+        .catch(err => { 
+            console.error(err)
+        })
+
+    }
+
     return(
         <div>
             <form onSubmit={handleSubmit}>
@@ -184,6 +202,9 @@ function EditarProducto(){
                     </div>
 
             </form>
+            <div className="boton-guardar">
+                    <button type="submit" onClick={handleSubmitDelete}>Borrar Producto</button> 
+            </div>
         </div>
     );
 }

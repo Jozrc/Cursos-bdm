@@ -63,7 +63,7 @@ function ElegirProducto({userdata}){
                 <p className="descripcion">
                 {row.descripcion}</p>
                 {userdata.data?.user.id_user ? (
-                <Link to="/Carrito"><button className="button-planner">Agregar</button></Link>
+                <Link to={`./${row.id_producto}`}><button className="button-planner">Editar</button></Link>
                 ) : 
                 (<> </>)}
 

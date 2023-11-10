@@ -1,25 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { AiFillStar } from 'react-icons/ai'
 import "./Styles/producto.css"
+import { useParams } from "react-router-dom";
 
 function EditarProducto(){
-
+    const { id } = useParams();
+    console.log(id)
     const [image, setImage] = useState(null);
-
-    const [producto, setproducto] = useState({
+    console.log(image)
+    const [productoForm, setproductoForm] = useState({
         nombreP: '',
         descripcion: '',
         precio: '',
         cant_disp: '',
     });
 
+
     const handleText = e => {
        
-        setproducto({
-          ...producto,
+        setproductoForm({
+          ...productoForm,
           [e.target.name]: e.target.value
-        })
-        console.log(producto)
+        });
+
     }
 
     const handleImageChange = (event) => {
@@ -37,9 +40,34 @@ function EditarProducto(){
         }
     };
 
-    let {nombreP, descripcion, precio, cant_disp} = producto;
+    let {nombreP, descripcion, precio, cant_disp} = productoForm;
 
-    
+   
+
+    useEffect ( () => { 
+        fetch(`http://localhost:5000/geteditProducto/${id}`, {
+          method: 'GET',
+          headers: {'Content-Type': 'application/json'},
+          }).then(
+              response => response.json()
+          ).then((data) => {
+            console.log(data)
+            
+            setproductoForm({
+                nombreP: data.nombreP,
+                descripcion: data.descripcion,
+                precio: data.precio,
+                cant_disp: data.cant_disp,
+            });
+            
+          })
+          .catch((error) => {
+            console.error('Fetch error:', error);
+        });
+            
+        
+    }, [id]) 
+
     const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -47,67 +75,82 @@ function EditarProducto(){
             alert('Todos los campos son obligatorios')
             return
         }
+
         const formData = new FormData();
-        // formData.append('id_user', id_user);
         formData.append('nombreP', nombreP);
         formData.append('descripcion', descripcion);
         formData.append('precio', precio);
-        formData.append('cant_disp', cant_disp);
         formData.append('img_prod', image);
+        formData.append('cant_disp', cant_disp);
 
+        
         const requestInit = {
-            method: 'POST',
+            method: 'PUT',
             body: formData
         }
 
-        fetch('http://localhost:5000/postProducto', requestInit)
+        fetch(`http://localhost:5000/editProducto/${id}`, requestInit)
         .then ((res) => res.json())
         .then ((res) => {
             console.log(res);
-            window.location.reload(); 
         })
         .catch(err => { 
             console.error(err)
         })
 
-        setproducto({
-            nombreP: '',
-            descripcion: '',
-            precio: '',
-            can_disp: '',
-        })
-        
-        document.getElementById('fileinput').value = null;
-
         console.log(formData);
-        setImage(null);
     }
 
     return(
         <div>
-            <form onSubmit={ handleSubmit }>
+            <form onSubmit={handleSubmit}>
                 <div className="container">
                     <div>
                         Producto:
-                        <input type="text" name="nombreP" onChange={handleText}/>
+                        <input 
+                        type="text" 
+                        name="nombreP" 
+                        value={productoForm.nombreP} 
+                        onChange={handleText}
+                        />
                     </div>
                     <div>
                         Descripcion:
-                        <textarea type="text" name="descripcion" onChange={handleText}/>
+                        <textarea 
+                        type="text" 
+                        name="descripcion" 
+                        value={productoForm.descripcion} 
+                        onChange={handleText}
+                        />
                     </div>
                     <div>
                         Precio:
-                        <input type="number" name="precio" onChange={handleText}/>
+                        <input 
+                        type="number" 
+                        name="precio" 
+                        value={productoForm.precio} 
+                        onChange={handleText}
+                        />
                     </div>
                     <div>
                         Cantidad disponible:
-                        <input type="number" name="cant_disp" onChange={handleText}/>
+                        <input 
+                        type="number" 
+                        name="cant_disp" 
+                        value={productoForm.cant_disp} 
+                        onChange={handleText}
+                        />
                     </div>
 
                     <div className="form-group">
                                 Load image: 
-                                <input type="file" className="form-control custom-input" accept="image/*" 
-                                onChange={handleImageChange} id='fileinput'/>
+                                <input 
+                                type="file"
+                                className="form-control custom-input" 
+                                accept="image/*" 
+                                onChange={handleImageChange} 
+                                id='fileinput'
+                                />
                     </div>
                     {/* <div className="star-widgeet">
                         Rating:
@@ -137,7 +180,7 @@ function EditarProducto(){
                     </div> */}
                 </div>
                 <div className="boton-guardar">
-                    <button type="submit" /* onClick={guardarProducto}*/>Guardar Producto</button> 
+                    <button type="submit" >Editar Producto</button> 
                     </div>
 
             </form>

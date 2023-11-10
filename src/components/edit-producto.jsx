@@ -5,9 +5,9 @@ import { useParams } from "react-router-dom";
 
 function EditarProducto(){
     const { id } = useParams();
-    console.log(id)
+
     const [image, setImage] = useState(null);
-    console.log(image)
+
     const [productoForm, setproductoForm] = useState({
         nombreP: '',
         descripcion: '',

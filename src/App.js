@@ -87,7 +87,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Index userdata={userdata} />} />
         <Route path="/carrito" element={<Carrito />} />
-        <Route path="/Perfiles" element={<Perfiles />} />
+        <Route path="/perfiles/:id" element={<Perfiles />} />
         <Route path="/login" element={<Login user={user} setUser={setUser} setToken={setToken}/>} />
         <Route path="/register" element={<Register user = {user} setUser = {setUser}/>} />
         <Route path="/producto" element={<Producto userdata={userdata} />} />

@@ -9,6 +9,8 @@ import Carrito from "./components/carrito.jsx";
 import Perfiles from "./components/perfiles.jsx";
 import { Route, Routes, useLocation } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css'
+import EditarProducto from "./components/edit-producto.jsx";
+import ElegirProducto from "./components/elegir-producto.jsx";
 
 
 
@@ -83,12 +85,14 @@ function App() {
         <NavbarReact  userdata={userdata} setUserdata={setUserdata} setToken={setToken}/>
       )}
       <Routes>
-        <Route path="/" element={<Index />} />
-        <Route path="/Carrito" element={<Carrito />} />
-        <Route path="/Perfiles" element={<Perfiles />} />
+        <Route path="/" element={<Index userdata={userdata} />} />
+        <Route path="/carrito" element={<Carrito />} />
+        <Route path="/perfiles/:id" element={<Perfiles />} />
         <Route path="/login" element={<Login user={user} setUser={setUser} setToken={setToken}/>} />
         <Route path="/register" element={<Register user = {user} setUser = {setUser}/>} />
         <Route path="/producto" element={<Producto userdata={userdata} />} />
+        <Route path="/editarproducto" element={<ElegirProducto userdata={userdata}/>}/>
+        <Route path="/editarproducto/:id" element={<EditarProducto/>}/>
       </Routes>
 
       {location.pathname !== "/login" && location.pathname !== "/register" && (

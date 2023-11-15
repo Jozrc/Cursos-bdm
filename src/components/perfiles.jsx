@@ -1,148 +1,148 @@
-import React, { useState } from "react";
-import miImagen from "./images/registerBDM.png";
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Link, useParams } from 'react-router-dom';
 import { AiFillStar } from 'react-icons/ai'
 import './Styles/Perfiles.css';
 
 function Perfiles() {
- 
-  const [rating, setRating] = useState(null);
-  const [hover, setHover] = useState(null)
-  const [imagen, setImagen] = useState(null); 
+  const { id } = useParams();
+
+  const [userForm, setuserForm] = useState({
+    nombre:"",
+    apellido_p:"",
+    usuario:"",
+    rol:"",
+    correo:""
+  })
+
+  useEffect ( () => { 
+    fetch(`http://localhost:5000/getEditUser/${(id)}`, {
+      method: 'GET',
+      headers: {'Content-Type': 'application/json'},
+      }).then(
+          response => response.json()
+      ).then((data) => {
+        console.log(data)
+        setuserForm({
+            nombre: data.nombre,
+            apellido_p: data.apellido_p,
+            usuario: data.usuario,
+            rol: data.rol,
+            correo:data.correo
+        });
+      })
+      .catch((error) => {
+        console.error('Fetch error:', error);
+    }); 
+    
+}, [id]) 
+
+const handleChange = e => {
+    setuserForm({
+        ...userForm,
+        [e.target.name]: e.target.value
+    })
+};
+
+let {nombre, apellido_p, usuario, rol, correo} = userForm
+
+const handleSubmit = () => {
+
+    const formData = new FormData();
+    formData.append('nombre', nombre);
+    formData.append('apellido_p', apellido_p);
+    formData.append('usuario', usuario);
+    formData.append('rol', rol);
+    formData.append('correo', correo);
+
+    const requestInit = {
+        metod: "PUT",
+        body: formData
+    }
+
+    fetch(`http://localhost:5000/putUser/${(id)}`, requestInit)
+    .then((res) => res.json())
+    .then((data) => {
+        console.log(data)
+    })
+    .catch((error) => console.log(error));
+    
+};
+
 
   return (
     <div>
-    <div className="profile-container">
-        <div className="profile-header">
-            <h1>Perfil de Usuario</h1>
-        </div>
-        <div className="profile-info">
-            <div>
-                <label>Nombre:</label>
-                <input type="text" defaultValue="John" />
+    { userForm.rol === 1 ? ( 
+          <div className="profile-container">
+          <div className="profile-header">
+              <h1>Perfil de Usuario</h1>
+          </div>
+          <form className="profile-info" onSubmit={handleSubmit}>
+              <div>
+                  <label>Nombre:</label>
+                  <input type="text"  name="nombre" onChange={handleChange} value={userForm.nombre} />
+              </div>
+              <div>
+                  <label>Apellido:</label>
+                  <input type="text"  name="apellido_p" onChange={handleChange}  value={userForm.apellido_p}/>
+              </div>
+              <div>
+                  <label>Nombre de Usuario:</label>
+                  <input type="text"  name="usuario" onChange={handleChange}  value={userForm.usuario}/>
+              </div>
+              <div>
+                  <label>Tipo de Usuario:</label>
+                  <select name="rol" onChange={handleChange} className="inputField3" value={userForm.rol}>
+                        <option value="0">Vendedor</option>
+                        <option value="1">Comprador</option>
+                        <option value="2">Vendedor/Comprador</option>
+                  </select>
+                 
+              </div>
+              <div>
+                  <label>Correo Electrónico:</label>
+                  <input type="email" name="correo" onChange={handleChange}  value={userForm.correo}/>
+              </div>
+            <div className="save-button">
+              <button type="submit" value="Submit">Guardar Cambios</button>
             </div>
-            <div>
-                <label>Apellido:</label>
-                <input type="text" defaultValue="Doe" />
-            </div>
-            <div>
-                <label>Nombre de Usuario:</label>
-                <input type="text" defaultValue="JohnDoe123" />
-            </div>
-            <div>
-                <label>Tipo de Usuario:</label>
-                <input type="text" defaultValue="Usuario Regular" />
-            </div>
-            <div>
-                <label>Correo Electrónico:</label>
-                <input type="email" defaultValue="johndoe@example.com" />
-            </div>
-            <div>
-                <label>Contraseña:</label>
-                <input type="password" defaultValue="********" />
-            </div>
-            <div>
-                <label>Número de Contacto:</label>
-                <input type="text" defaultValue="123456789" />
-            </div>
-        </div>
-        <div className="save-button">
-            <button>Guardar Cambios</button>
-        </div>
-    </div>
-    <div className="profile-container">
+          </form>
+      </div>
+    ) : (
+    <div>
+         <div className="profile-container">
         <div className="profile-header">
             <h1>Perfil de Vendedor</h1>
         </div>
-        <div className="profile-info">
-            <div>
-                <label>Nombre:</label>
-                <input type="text" defaultValue="Jane" />
-            </div>
-            <div>
-                <label>Apellido:</label>
-                <input type="text" defaultValue="Smith" />
-            </div>
-            <div>
-                <label>Nombre de Usuario:</label>
-                <input type="text" defaultValue="JaneSmith" />
-            </div>
-            <div>
-                <label>Tipo de Usuario:</label>
-                <input type="text" defaultValue="Usuario Regular" />
-            </div>
-            <div>
-                <label>Correo Electrónico:</label>
-                <input type="email" defaultValue="janesmith@example.com" />
-            </div>
-            <div>
-                <label>Contraseña:</label>
-                <input type="password" defaultValue="********" />
-            </div>
-            <div>
-                <label>Número de Contacto:</label>
-                <input type="text" defaultValue="987654321" />
-            </div>
-        </div>
-        <div className="save-button">
-            <button>Guardar Cambios</button>
-        </div>
-    </div>
-    <div className="product-container">
-   
-    <div className="product-header">
-            <h1>Productos Aprobados</h1>
-        </div>
-
-        <form>
-            <div className="container">
+        <form className="profile-info" onSubmit={handleSubmit}>
                 <div>
-                    Producto:
-                    <input type="text" />
-                </div>
-                <div>
-                    Descripción:
-                    <input type="textarea" />
-                </div>
-                <div>
-                    Precio:
-                    <input type="number" />
-                </div>
-                <div>
-                    Cantidad disponible:
-                    <input type="number" />
-                </div>
-                <div className="star-widget">
-                    Rating:
-                    {[...Array(5)].map((star, index) => {
-                        const currentRating = index + 1;
-
-                        return (
-                            <label key={currentRating}>
-                                <input
-                                    type="radio"
-                                    name="rating"
-                                    value={currentRating}
-                                />
-                                <AiFillStar
-                                    className="star"
-                                    size={25}
-                                    color={
-                                        currentRating <= (hover || rating)
-                                            ? "#ffc107"
-                                            : "#e4e5e9"
-                                    }
-                                    onMouseEnter={() =>
-                                        setHover(currentRating)
-                                    }
-                                    onMouseLeave={() => setHover(null)}
-                                />
-                            </label>
-                        );
-                    })}
-                </div>
-            </div>
+                  <label>Nombre:</label>
+                  <input type="text" name="nombre" onChange={handleChange}  value={userForm.nombre} />
+              </div>
+              <div>
+                  <label>Apellido:</label>
+                  <input type="text" name="apellido_p" onChange={handleChange}  value={userForm.apellido_p}/>
+              </div>
+              <div>
+                  <label>Nombre de Usuario:</label>
+                  <input type="text" name="usuario" onChange={handleChange}  value={userForm.usuario}/>
+              </div>
+              <div>
+                  <label>Tipo de Usuario:</label>
+                  <select name="rol" onChange={handleChange} className="inputField3" value={userForm.rol}>
+                        <option value="0">Vendedor</option>
+                        <option value="1">Comprador</option>
+                        <option value="2">Vendedor/Comprador</option>
+                   </select>
+              </div>
+              <div>
+                  <label>Correo Electrónico:</label>
+                  <input type="email" name="correo" onChange={handleChange}  value={userForm.correo}/>
+              </div>
+              <div className="save-button">
+                <button type="submit" value="Submit">Guardar Cambios</button>
+              </div>
         </form>
+      
     </div>
 
     <div className="admin-container">
@@ -167,7 +167,12 @@ function Perfiles() {
                     <button>Eliminar</button>
                 </div>
             </div>
-
+    </div>
+       
+        
+    )}
+  
+  
 </div>
 
   );

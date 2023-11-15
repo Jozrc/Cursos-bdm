@@ -10,7 +10,7 @@ import './Styles/offcanvas.css'
 import Offcanvas from 'react-bootstrap/Offcanvas';
 
 export const NavbarReact = ({userdata, setUserdata, setToken}) => {
-    const { usuario, rol } = userdata.data.user;
+    const { id_user, usuario, rol } = userdata.data.user;
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -49,19 +49,19 @@ export const NavbarReact = ({userdata, setUserdata, setToken}) => {
               navbarScroll
             >
               <NavDropdown title="Más" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Compras</NavDropdown.Item>
+              <NavDropdown.Item href="#action3">Mis compras</NavDropdown.Item>
               <NavDropdown.Item href="#action4">
                 Historial de Pagos
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action5">
-                Chats
+              <NavDropdown.Item href="/carrito">
+                Carrito
               </NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="Opciones de vendedor" id="navbarScrollingDropdown">
               <NavDropdown.Item href="/producto">
                 Crear producto
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
+              <NavDropdown.Item href="/editarproducto">
                 Editar productos
               </NavDropdown.Item>
             </NavDropdown>
@@ -104,20 +104,20 @@ export const NavbarReact = ({userdata, setUserdata, setToken}) => {
          )}  
         </Navbar.Collapse>
       </Container>
-      <OffcanvasComponent show={show} handleClose={handleClose} handleLogout={handleLogout} usuario={usuario} />
+      <OffcanvasComponent show={show} handleClose={handleClose} handleLogout={handleLogout} usuario={usuario} id_user={id_user} />
     </Navbar>
     );
 
 };
 
-const OffcanvasComponent = ({ show, handleClose, handleLogout, usuario}) => {
+const OffcanvasComponent = ({ show, handleClose, handleLogout, usuario, id_user}) => {
   return (
     <Offcanvas show={show} onHide={handleClose} placement='end' className="Offcanvas-backgorund">
       <Offcanvas.Header closeButton>
         <Offcanvas.Title>Welcome {usuario}</Offcanvas.Title>
       </Offcanvas.Header>
       <Offcanvas.Body >
-        <Link className="nav-link" aria-current="page">Perfil</Link>
+        <Link className="nav-link" aria-current="page" to={`./perfiles/${id_user}`}>Perfil</Link>
         <Link className="nav-link" aria-current="page"  onClick={() =>{ 
           handleLogout();
           handleClose();}} to="./">LogOut</Link>

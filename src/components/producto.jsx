@@ -16,6 +16,10 @@ function Producto({userdata}){
         cant_disp: '',
     });
 
+
+    const [categoria, setcategoria] = useState({
+        nombreC: '',
+    });
     
 
     const handleText = e => {
@@ -45,6 +49,30 @@ function Producto({userdata}){
     let {nombreP, descripcion, precio, cant_disp} = producto;
     const  id_user  = userdata.data.user.id_user;
    
+    const handleCategorias = (event)  => {
+
+        event.preventDefault();
+        // Obtener elementos del DOM
+        var modal = document.getElementById('myModal');
+        var span = document.getElementsByClassName('close')[0];
+
+        // Función para abrir la ventana modal
+        modal.style.display = 'block';
+        
+        // Función para cerrar la ventana modal al hacer clic en la "X"
+        span.onclick = function() {
+        modal.style.display = 'none';
+        };
+
+        // Función para cerrar la ventana modal al hacer clic fuera de ella
+        window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+};
+
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -83,15 +111,63 @@ function Producto({userdata}){
             can_disp: '',
         })
         
+
+
         document.getElementById('fileinput').value = null;
 
         console.log(formData);
         setImage(null);
     }
 
+
+    const handleSubmitC = (event) => {
+        event.preventDefault();
+
+        if ( nombreC === '' ) {
+            alert('Todos los campos son obligatorios')
+            return
+        }
+
+        const formData = new FormData();
+        formData.append('id_user', id_user);
+        formData.append('nombreC', nombreC);
+    
+
+        const requestInit = {
+            method: 'POST',
+            body: formData
+        }
+
+        fetch('http://localhost:5000/postProducto', requestInit)
+        .then ((res) => res.json())
+        .then ((res) => {
+            console.log(res);
+            window.location.reload(); 
+        })
+        .catch(err => { 
+            console.error(err)
+        })
+
+        setproducto({
+            nombreP: '',
+            descripcion: '',
+            precio: '',
+            can_disp: '',
+        })
+        
+
+
+        document.getElementById('fileinput').value = null;
+
+        console.log(formData);
+        setImage(null);
+    }
+
+
     return(
         <div>
             <form onSubmit={ handleSubmit }>
+                
                 <div className="container">
                     <div>
                         Producto:
@@ -114,6 +190,12 @@ function Producto({userdata}){
                                 Load image: 
                                 <input type="file" className="form-control custom-input" accept="image/*" 
                                 onChange={handleImageChange} id='fileinput'/>
+                    </div>
+
+                    <div className="form-group">
+                                Categoria:
+                                <select className="form-control custom-input"
+                                id='fileinput'/>
                     </div>
                     {/* <div className="star-widgeet">
                         Rating:
@@ -141,12 +223,37 @@ function Producto({userdata}){
                         })}
                 
                     </div> */}
-                </div>
-                <div className="boton-guardar">
-                    <button type="submit" /* onClick={guardarProducto}*/>Guardar Producto</button> 
+
+                    <div className="boton-addcategoria">
+                        <button onClick={handleCategorias} >Crear Categoria</button> 
                     </div>
 
+                    <div className="boton-guardar">
+                        <button type="submit" /* onClick={guardarProducto}*/>Guardar Producto</button> 
+                    </div>
+                </div>
+    
             </form>
+                    <div id="myModal" class="modal">
+                            <div class="modal-content">
+                            <span class="close">&times;</span>
+                                <form > 
+                                <div>
+                                    Nombre Categoria:
+                                    <input type="text" name="nombreC" onChange={handleText}/>
+                                </div>
+                                <div>
+                                    Descripcion:
+                                    <textarea type="text" name="descripcionC" onChange={handleText}/>
+                                </div>
+                                <div className="boton-guardar">
+                                    <button type="submit" /* onClick={guardarProducto}*/>Guardar Categoria</button> 
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+
+
         </div>
     );
 }

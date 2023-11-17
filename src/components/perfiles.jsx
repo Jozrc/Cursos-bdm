@@ -106,9 +106,31 @@ const handleSubmit = () => {
               <button type="submit" value="Submit">Guardar Cambios</button>
             </div>
           </form>
+          <div className="admin-container">
+                        <div className="admin-header">
+                            <h2>COnsulta de Pedidos</h2>
+                        </div>
+                        <table className="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Numero de Pedido</th>
+                                    <th>Producto</th>
+                                    <th>Fecha de Compra</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {/* Aquí se agregarán los datos de la tabla */}
+                            </tbody>
+                        </table>
+                        <div className="admin-buttons">
+                            <button>Ver detalles</button>
+                        </div>
+             </div>
       </div>
     ) : (
     <div>
+        
+                 {/* AQUI SOLO PODRIA VERLO EL VENDEDOR */}
          <div className="profile-container">
         <div className="profile-header">
             <h1>Perfil de Vendedor</h1>
@@ -142,31 +164,50 @@ const handleSubmit = () => {
                 <button type="submit" value="Submit">Guardar Cambios</button>
               </div>
         </form>
-      
     </div>
-
     <div className="admin-container">
-                <div className="admin-header">
-                    <h2>Administrar Perfiles</h2>
-                </div>
-                <table className="admin-table">
-                    <thead>
-                        <tr>
-                            <th>Nombre de Usuario</th>
-                            <th>Rol de Usuario</th>
-                            <th>Fecha de Registro</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {/* Aquí se agregarán los datos de la tabla */}
-                    </tbody>
-                </table>
-                <div className="admin-buttons">
-                    <button>Agregar</button>
-                    <button>Modificar</button>
-                    <button>Eliminar</button>
-                </div>
-            </div>
+                        <div className="admin-header">
+                            <h2>Ventas</h2>
+                        </div>
+                        <table className="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Numero de Venta</th>
+                                    <th>Comprador</th>
+                                    <th>Fecha de Registro</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {/* Aquí se agregarán los datos de la tabla */}
+                            </tbody>
+                        </table>
+                        <div className="admin-buttons">
+                            <button>Ver detalles</button>
+                        </div>
+             </div>
+          {/* AQUI SOLO PODRIA VERLO EL SUPER ADMIN */}
+            <div className="admin-container">
+                        <div className="admin-header">
+                            <h2>Administrar Perfiles</h2>
+                        </div>
+                        <table className="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Nombre de Usuario</th>
+                                    <th>Rol de Usuario</th>
+                                    <th>Fecha de Registro</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {/* Aquí se agregarán los datos de la tabla */}
+                            </tbody>
+                        </table>
+                        <div className="admin-buttons">
+                            <button>Agregar</button>
+                            <button>Modificar</button>
+                            <button>Eliminar</button>
+                        </div>
+             </div>
     </div>
        
         

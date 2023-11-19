@@ -120,25 +120,27 @@ function Producto({userdata}){
     }
 
 
-    const handleSubmitC = (event) => {
-        event.preventDefault();
+    const handleSubmit2 = (event)  => {
 
-        if ( nombreC === '' ) {
+        var nombre = document.getElementById('nombre').value;
+        var descripcion = document.getElementById('descripcion').value;
+    
+        event.preventDefault();
+        if ( nombre === '' || descripcion === '' ) {
             alert('Todos los campos son obligatorios')
             return
         }
-
-        const formData = new FormData();
-        formData.append('id_user', id_user);
-        formData.append('nombreC', nombreC);
     
-
+        const formData = new FormData();
+        formData.append('nombre', nombre);
+        formData.append('descripcion', descripcion);
+    
         const requestInit = {
             method: 'POST',
             body: formData
         }
-
-        fetch('http://localhost:5000/postProducto', requestInit)
+    
+        fetch('http://localhost:5000/postCategoria', requestInit)
         .then ((res) => res.json())
         .then ((res) => {
             console.log(res);
@@ -147,20 +149,8 @@ function Producto({userdata}){
         .catch(err => { 
             console.error(err)
         })
-
-        setproducto({
-            nombreP: '',
-            descripcion: '',
-            precio: '',
-            can_disp: '',
-        })
-        
-
-
-        document.getElementById('fileinput').value = null;
-
-        console.log(formData);
-        setImage(null);
+    
+    
     }
 
 
@@ -237,14 +227,14 @@ function Producto({userdata}){
                     <div id="myModal" class="modal">
                             <div class="modal-content">
                             <span class="close">&times;</span>
-                                <form > 
+                                <form onSubmit={handleSubmit2}> 
                                 <div>
                                     Nombre Categoria:
-                                    <input type="text" name="nombreC" onChange={handleText}/>
+                                    <input type="text" id= "nombre" name="nombre" onChange={handleText}/>
                                 </div>
                                 <div>
                                     Descripcion:
-                                    <textarea type="text" name="descripcionC" onChange={handleText}/>
+                                    <textarea type="text" id= "descripcion" name="descripcion" onChange={handleText}/>
                                 </div>
                                 <div className="boton-guardar">
                                     <button type="submit" /* onClick={guardarProducto}*/>Guardar Categoria</button> 

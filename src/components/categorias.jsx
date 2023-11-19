@@ -6,67 +6,51 @@ import './Styles/categorias.css';
 function Categorias() {
   const { id } = useParams();
 
-  const [userForm, setuserForm] = useState({
+  const [categorias, setCategorias] = useState({
     nombre:"",
-    apellido_p:"",
-    usuario:"",
-    rol:"",
-    correo:""
+    descripcion:""
   })
 
-  useEffect ( () => { 
-    fetch(`http://localhost:5000/getEditUser/${(id)}`, {
-      method: 'GET',
-      headers: {'Content-Type': 'application/json'},
-      }).then(
-          response => response.json()
-      ).then((data) => {
-        console.log(data)
-        setuserForm({
-            nombre: data.nombre,
-            apellido_p: data.apellido_p,
-            usuario: data.usuario,
-            rol: data.rol,
-            correo:data.correo
-        });
-      })
-      .catch((error) => {
-        console.error('Fetch error:', error);
-    }); 
-    
-}, [id]) 
-
-const handleChange = e => {
-    setuserForm({
-        ...userForm,
-        [e.target.name]: e.target.value
+const handleText = e => {
+       
+    setCategorias({
+      ...categorias,
+      [e.target.name]: e.target.value
     })
-};
+    console.log(categorias)
+}
 
-let {nombre, apellido_p, usuario, rol, correo} = userForm
+const handleSubmit = (event)  => {
 
-const handleSubmit = () => {
+    let {nombre, descripcion} = categorias;
+
+    event.preventDefault();
+    if ( nombre === '' || descripcion === '' ) {
+        alert('Todos los campos son obligatorios')
+        return
+    }
 
     const formData = new FormData();
     formData.append('nombre', nombre);
-    formData.append('apellido_p', apellido_p);
-    formData.append('usuario', usuario);
-    formData.append('rol', rol);
-    formData.append('correo', correo);
+    formData.append('descripcion', descripcion);
 
     const requestInit = {
-        metod: "PUT",
+        method: 'POST',
         body: formData
     }
 
-    fetch(`http://localhost:5000/putUser/${(id)}`, requestInit)
-    .then((res) => res.json())
-    .then((data) => {
-        console.log(data)
+    fetch('http://localhost:5000/postCategoria', requestInit)
+    .then ((res) => res.json())
+    .then ((res) => {
+        console.log(res);
+        window.location.reload(); 
     })
-    .catch((error) => console.log(error));
-    
-};
+    .catch(err => { 
+        console.error(err)
+    })
+
+
+}
 
 const handleCategorias = (event)  => {
 
@@ -122,14 +106,14 @@ const handleCategorias = (event)  => {
             <div id="myModal" class="modal">
                             <div class="modal-content">
                             <span class="close">&times;</span>
-                                <form > 
+                                <form onSubmit={handleSubmit}> 
                                 <div>
                                     Nombre Categoria:
-                                    <input type="text" name="nombreC" />
+                                    <input type="text" name="nombre" onChange={handleText}/>
                                 </div>
                                 <div>
                                     Descripcion:
-                                    <textarea type="text" name="descripcionC" />
+                                    <textarea type="text" name="descripcion" onChange={handleText}/>
                                 </div>
                                 <div className="boton-guardar">
                                     <button type="submit" /* onClick={guardarProducto}*/>Guardar Categoria</button> 

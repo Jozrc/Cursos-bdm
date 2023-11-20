@@ -17,9 +17,9 @@ function Producto({userdata}){
     });
 
 
-    // const [categoria, setcategoria] = useState({
-    //     nombreC: '',
-    // });
+    const [categoria, setcategoria] = useState({
+        nombreC: '',
+    });
     
 
     const handleText = e => {
@@ -66,7 +66,7 @@ function Producto({userdata}){
 
         // Función para cerrar la ventana modal al hacer clic fuera de ella
         window.onclick = function(event) {
-        if (event.target == modal) {
+        if (event.target === modal) {
             modal.style.display = 'none';
         }
 };
@@ -234,7 +234,7 @@ function Producto({userdata}){
                 </div>
     
             </form>
-                    <div id="myModal" class="modal">
+                    {/* <div id="myModal" class="modal">
                             <div class="modal-content">
                             <span class="close">&times;</span>
                                 <form onSubmit={handleSubmit2}> 
@@ -247,11 +247,11 @@ function Producto({userdata}){
                                     <textarea type="text" id= "descripcion" name="descripcion" onChange={handleText}/>
                                 </div>
                                 <div className="boton-guardar">
-                                    <button type="submit" /* onClick={guardarProducto}*/>Guardar Categoria</button> 
+                                    <button type="submit">Guardar Categoria</button> 
                                 </div>
                                 </form>
                             </div>
-                        </div>
+                        </div> */}
 
 
         </div>

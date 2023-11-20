@@ -237,14 +237,14 @@ function Producto({userdata}){
                     <div id="myModal" class="modal">
                             <div class="modal-content">
                             <span class="close">&times;</span>
-                                <form > 
+                                <form onSubmit={handleSubmit2}> 
                                 <div>
                                     Nombre Categoria:
-                                    <input type="text" name="nombreC" onChange={handleText}/>
+                                    <input type="text" id= "nombre" name="nombre" onChange={handleText}/>
                                 </div>
                                 <div>
                                     Descripcion:
-                                    <textarea type="text" name="descripcionC" onChange={handleText}/>
+                                    <textarea type="text" id= "descripcion" name="descripcion" onChange={handleText}/>
                                 </div>
                                 <div className="boton-guardar">
                                     <button type="submit" /* onClick={guardarProducto}*/>Guardar Categoria</button> 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import './Styles/nav.css';
 import Container from 'react-bootstrap/Container';
@@ -8,14 +8,25 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import './Styles/offcanvas.css'
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import Index from "./index.jsx";
 
 export const NavbarReact = ({userdata, setUserdata, setToken}) => {
-    const { id_user, usuario, rol } = userdata.data.user;
+    const { id_user } = userdata.data?.user;
+    
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    const [userForm, setuserForm] = useState({
+      nombre:"",
+      apellido_p:"",
+      usuario:"",
+      rol:"",
+      correo:""
+    })
+
+  
     const handleLogout = () => {
       setUserdata({ data: { user: { 
         usuario:'', 
@@ -30,6 +41,30 @@ export const NavbarReact = ({userdata, setUserdata, setToken}) => {
         localStorage.removeItem('token');
     };
 
+    useEffect ( () => { 
+      fetch(`http://localhost:5000/getEditUser/${(id_user)}`, {
+        method: 'GET',
+        headers: {'Content-Type': 'application/json'},
+        }).then(
+            response => response.json()
+        ).then((data) => {
+          console.log(data)
+          setuserForm({
+              nombre: data.nombre,
+              apellido_p: data.apellido_p,
+              usuario: data.usuario,
+              rol: data.rol,
+              correo:data.correo
+          });
+        })
+        .catch((error) => {
+          console.error('Fetch error:', error);
+      }); 
+      
+    }, [id_user]) 
+
+    
+  
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
@@ -42,18 +77,15 @@ export const NavbarReact = ({userdata, setUserdata, setToken}) => {
             navbarScroll
           >
             <Nav.Link href="/">Pagina Principal</Nav.Link>
-            {rol === 0 ? ( 
+            {userForm.rol === 0 ? ( 
               <Nav
               className="me-auto my-2 my-lg-0"
               style={{ maxHeight: '100px' }}
               navbarScroll
             >
               <NavDropdown title="Más" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Mis compras</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Historial de Pagos
-              </NavDropdown.Item>
-              <NavDropdown.Item href="/carrito">
+              <NavDropdown.Item href="#action3">Compras</NavDropdown.Item>
+              <NavDropdown.Item href={`/carrito/${id_user}`}>
                 Carrito
               </NavDropdown.Item>
             </NavDropdown>
@@ -67,33 +99,20 @@ export const NavbarReact = ({userdata, setUserdata, setToken}) => {
             </NavDropdown>
               </Nav>
            
-             ): rol === 1 ? ( <Nav
+             ): userForm.rol === 1 ? ( <Nav
               className="me-auto my-2 my-lg-0"
               style={{ maxHeight: '100px' }}
               navbarScroll
             >
                 <NavDropdown title="Más" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#action3">Compras</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Historial de Pagos
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action5">
-                Chats
+            <NavDropdown.Item href={`/carrito/${id_user}`}>
+               Carrito
               </NavDropdown.Item>
             </NavDropdown>
             </Nav>):(<></>)}
           </Nav>
-          <Form className="d-flex">
-            
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className="me-2"
-              aria-label="Search"
-            />
-            <button className="button-search" >Buscar</button>
-          </Form>
-          {usuario ? (
+          {userForm.usuario ? (
              <div>
              <Nav.Link variant="primary" onClick={handleShow} className="nav-link" aria-current="page">profile</Nav.Link>
              </div>   
@@ -104,7 +123,7 @@ export const NavbarReact = ({userdata, setUserdata, setToken}) => {
          )}  
         </Navbar.Collapse>
       </Container>
-      <OffcanvasComponent show={show} handleClose={handleClose} handleLogout={handleLogout} usuario={usuario} id_user={id_user} />
+      <OffcanvasComponent show={show} handleClose={handleClose} handleLogout={handleLogout} usuario={userForm.usuario} id_user={id_user} />
     </Navbar>
     );
 

@@ -87,7 +87,7 @@ function App() {
       )}
       <Routes>
         <Route path="/" element={<Index userdata={userdata} />} />
-        <Route path="/carrito" element={<Carrito />} />
+        <Route path="/carrito/:id" element={<Carrito />} />
         <Route path="/perfiles/:id" element={<Perfiles />} />
         <Route path="/categorias" element={<Categorias />} />
         <Route path="/login" element={<Login user={user} setUser={setUser} setToken={setToken}/>} />

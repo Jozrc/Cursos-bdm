@@ -17,9 +17,9 @@ function Producto({userdata}){
     });
 
 
-    const [categoria, setcategoria] = useState({
-        nombreC: '',
-    });
+    // const [categoria, setcategoria] = useState({
+    //     nombreC: '',
+    // });
     
 
     const handleText = e => {
@@ -120,48 +120,48 @@ function Producto({userdata}){
     }
 
 
-    const handleSubmitC = (event) => {
-        event.preventDefault();
+    // const handleSubmitC = (event) => {
+    //     event.preventDefault();
 
-        if ( nombreC === '' ) {
-            alert('Todos los campos son obligatorios')
-            return
-        }
+    //     if ( nombreC === '' ) {
+    //         alert('Todos los campos son obligatorios')
+    //         return
+    //     }
 
-        const formData = new FormData();
-        formData.append('id_user', id_user);
-        formData.append('nombreC', nombreC);
+    //     const formData = new FormData();
+    //     formData.append('id_user', id_user);
+    //     formData.append('nombreC', nombreC);
     
 
-        const requestInit = {
-            method: 'POST',
-            body: formData
-        }
+    //     const requestInit = {
+    //         method: 'POST',
+    //         body: formData
+    //     }
 
-        fetch('http://localhost:5000/postProducto', requestInit)
-        .then ((res) => res.json())
-        .then ((res) => {
-            console.log(res);
-            window.location.reload(); 
-        })
-        .catch(err => { 
-            console.error(err)
-        })
+    //     fetch('http://localhost:5000/postProducto', requestInit)
+    //     .then ((res) => res.json())
+    //     .then ((res) => {
+    //         console.log(res);
+    //         window.location.reload(); 
+    //     })
+    //     .catch(err => { 
+    //         console.error(err)
+    //     })
 
-        setproducto({
-            nombreP: '',
-            descripcion: '',
-            precio: '',
-            can_disp: '',
-        })
+    //     setproducto({
+    //         nombreP: '',
+    //         descripcion: '',
+    //         precio: '',
+    //         can_disp: '',
+    //     })
         
 
 
-        document.getElementById('fileinput').value = null;
+    //     document.getElementById('fileinput').value = null;
 
-        console.log(formData);
-        setImage(null);
-    }
+    //     console.log(formData);
+    //     setImage(null);
+    // }
 
 
     return(

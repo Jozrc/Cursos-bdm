@@ -10,7 +10,8 @@ export const Perfiles = () =>{
     nombre:"",
     apellido_p:"",
     usuario:"",
-    correo:""
+    correo:"",
+    rol: ""
   })
 
 useEffect ( () => { 
@@ -25,7 +26,8 @@ useEffect ( () => {
             nombre: data.nombre,
             apellido_p: data.apellido_p,
             usuario: data.usuario,
-            correo:data.correo
+            correo:data.correo,
+            rol:data.rol
         });
       })
       .catch((error) => {
@@ -42,6 +44,40 @@ const handleChange = e => {
     console.log(userForm)
 };
 
+const [detallesData, setDetallesData] = useState([])
+
+const handleverDetalles = (id) => { 
+
+    const obtenerDetalles = async () => {
+        try {
+            const response = await fetch(`http://localhost:5000/getVentaD/${(id)}`);
+            const jsonData = await response.json();
+            setDetallesData(jsonData);
+        } catch (error) {
+            console.error('Error al obtener los datos:', error);
+        }
+    };
+
+    obtenerDetalles();
+
+    var modal = document.getElementById('myModal');
+    var span = document.getElementsByClassName('close')[0];
+
+    // Función para abrir la ventana modal
+    modal.style.display = 'block';
+    
+    // Función para cerrar la ventana modal al hacer clic en la "X"
+    span.onclick = function() {
+    modal.style.display = 'none';
+    };
+
+    // Función para cerrar la ventana modal al hacer clic fuera de ella
+    window.onclick = function(event) {
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+    };
+}
 
 const handleSubmit = () => {
 
@@ -68,6 +104,24 @@ const handleSubmit = () => {
     
 };
 
+const [ventasData, setventasData] = useState([])
+
+    useEffect(() => {
+        if(userForm.rol == 0){
+            const obtenerDatos = async () => {
+            try {
+                const response = await fetch('http://localhost:5000/getAllVentas');
+                const jsonData = await response.json();
+                setventasData(jsonData);
+            } catch (error) {
+                console.error('Error al obtener los datos:', error);
+            }
+        };
+
+        obtenerDatos();
+        }
+        
+    }, []);
 
   return (
     <div>
@@ -104,7 +158,7 @@ const handleSubmit = () => {
       </div>
         <div className="admin-container">
           <div className="admin-header">
-                            <h2>COnsulta de Pedidos</h2>
+                            <h2>Consulta de Pedidos</h2>
                         </div>
                         <table className="admin-table">
                             <thead>
@@ -164,15 +218,31 @@ const handleSubmit = () => {
                                     <th>Numero de Venta</th>
                                     <th>Comprador</th>
                                     <th>Fecha de Registro</th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {/* Aquí se agregarán los datos de la tabla */}
+                            {Array.isArray(ventasData) && ventasData.length > 0 ? (
+                                ventasData.map(item => (
+                                    <tr key={item.id_venta}>
+                                        <td>{item.id_venta}</td>
+                                        <td>{item.id_user}</td>
+                                        <td>{item.fecha}</td>
+                                        <td>
+                                        <div className="admin-buttons">
+                                            <button onClick={() => handleverDetalles(item.id_venta)}>Ver detalles</button>
+                                        </div>
+                                        </td>
+                                    </tr>
+                                ))
+                            ) : (
+                                <tr>
+                                    <td colSpan="4">No hay datos disponibles</td>
+                                </tr>
+                            )}
                             </tbody>
                         </table>
-                        <div className="admin-buttons">
-                            <button>Ver detalles</button>
-                        </div>
+                        
              </div>
     </div>
        
@@ -233,7 +303,36 @@ const handleSubmit = () => {
         </div>
 
     )}
-  
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <table className="admin-table">
+                <thead>
+                    <tr>
+                        <th>Nombre de Producto</th>
+                        <th>Cantidad comprada</th>
+                        <th>Precio por unidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {Array.isArray(detallesData) && detallesData.length > 0 ? (
+                    detallesData.map(item => (
+                        <tr key={item.nombreP}>
+                            <td>{item.nombreP}</td>
+                            <td>{item.cantidad}</td>
+                            <td>{item.precio_u}</td>
+                        </tr>
+                    ))
+                ) : (
+                    <tr>
+                        <td colSpan="4">No hay datos disponibles</td>
+                    </tr>
+                )}
+                </tbody>
+            </table>
+        </div>
+    </div>
   
 </div>
 

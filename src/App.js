@@ -12,6 +12,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import EditarProducto from "./components/edit-producto.jsx";
 import ElegirProducto from "./components/elegir-producto.jsx";
 import Categorias from "./components/categorias.jsx";
+import Pago from "./components/pago.jsx";
 
 
 
@@ -95,6 +96,7 @@ function App() {
         <Route path="/producto" element={<Producto userdata={userdata} />} />
         <Route path="/editarproducto" element={<ElegirProducto userdata={userdata}/>}/>
         <Route path="/editarproducto/:id" element={<EditarProducto/>}/>
+        <Route path="/pago/:id" element={<Pago userdata={userdata}/>}/>
       </Routes>
 
       {location.pathname !== "/login" && location.pathname !== "/register" && (

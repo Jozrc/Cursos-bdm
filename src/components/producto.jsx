@@ -1,12 +1,8 @@
-import React, { useState } from "react";
-import { AiFillStar } from 'react-icons/ai'
+import React, { useState, useEffect } from "react";
 import "./Styles/producto.css"
 
 function Producto({userdata}){
 
-    const [rating, setRating] = useState(null);
-    const [hover, setHover] = useState(null)
-    
     const [image, setImage] = useState(null);
 
     const [producto, setproducto] = useState({
@@ -14,13 +10,8 @@ function Producto({userdata}){
         descripcion: '',
         precio: '',
         cant_disp: '',
+        Categoria: ''
     });
-
-
-    const [categoria, setcategoria] = useState({
-        nombreC: '',
-    });
-    
 
     const handleText = e => {
        
@@ -46,7 +37,7 @@ function Producto({userdata}){
         }
     };
 
-    let {nombreP, descripcion, precio, cant_disp} = producto;
+    let {nombreP, descripcion, precio, cant_disp, Categoria} = producto;
     const  id_user  = userdata.data.user.id_user;
    
     const handleCategorias = (event)  => {
@@ -76,7 +67,7 @@ function Producto({userdata}){
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        if ( nombreP === '' || descripcion === '' || precio === '' || cant_disp === '') {
+        if ( nombreP === '' || descripcion === '' || precio === '' || Categoria === '' || cant_disp === '') {
             alert('Todos los campos son obligatorios')
             return
         }
@@ -87,8 +78,10 @@ function Producto({userdata}){
         formData.append('descripcion', descripcion);
         formData.append('precio', precio);
         formData.append('cant_disp', cant_disp);
+        formData.append('Categoria', Categoria);
         formData.append('img_prod', image);
-
+        
+        console.log(Categoria)
         const requestInit = {
             method: 'POST',
             body: formData
@@ -99,17 +92,19 @@ function Producto({userdata}){
         .then ((res) => {
             console.log(res);
             window.location.reload(); 
+            setproducto({
+                nombreP: '',
+                descripcion: '',
+                precio: '',
+                can_disp: '',
+                Categoria: ''
+            })
         })
         .catch(err => { 
             console.error(err)
         })
 
-        setproducto({
-            nombreP: '',
-            descripcion: '',
-            precio: '',
-            can_disp: '',
-        })
+        
         
 
 
@@ -119,6 +114,44 @@ function Producto({userdata}){
         setImage(null);
     }
 
+    const handleSubmit2 = (event)  => {
+  
+        var nombre = document.getElementById('nombre').value;
+        var descripcion = document.getElementById('descripcion').value;
+    
+        event.preventDefault();
+        if ( nombre === '' || descripcion === '' ) {
+            alert('Todos los campos son obligatorios')
+            return
+        }
+    
+        const formData = new FormData();
+        formData.append('nombre', nombre);
+        formData.append('descripcion', descripcion);
+
+        var cat= { nombre:nombre, descripcion:descripcion};
+     
+    
+        const requestInit = {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(cat)
+        }
+    
+        fetch('http://localhost:5000/postCategoria', requestInit)
+        .then ((res) => res.json())
+        .then ((res) => {
+            console.log(res);
+            alert('Categoria agregada correctamente.')
+            window.location.reload(); 
+        })
+        .catch(err => { 
+            console.error(err)
+            alert('Categoria no agregada.')
+        })
+    
+    
+    }
 
     // const handleSubmitC = (event) => {
     //     event.preventDefault();
@@ -163,6 +196,52 @@ function Producto({userdata}){
     //     setImage(null);
     // }
 
+    const [categoriasData, setCategoriasData] = useState([])
+
+    useEffect(() => {
+
+
+        const requestInit = {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'},
+        }
+    
+        fetch('http://localhost:5000/getAllCategorias', requestInit)
+        .then ((res) => res.json())
+        .then ((data) => {
+            console.log(data);
+            if (Array.isArray(data)) {
+                const filteredData = data.map((rows) => {
+                    return {
+                        ...rows,
+   
+                    }  
+                });
+                 setCategoriasData(filteredData);
+            } else {
+                console.log('Invalid data format:', data);
+            } 
+          
+        })
+        .catch(err => { 
+            console.error(err)
+            alert('Categoria no agregada.')
+        })
+
+        // const obtenerDatos = async () => {
+        //     try {
+        //         const response = await fetch('http://localhost:5000/getAllCategorias');
+        //         const jsonData = await response.json();
+        //         setCategoriasData(jsonData);
+        //     } catch (error) {
+        //         console.error('Error al obtener los datos:', error);
+        //     }
+        // };
+
+        // obtenerDatos();
+    }, []);
+  
+
 
     return(
         <div>
@@ -194,35 +273,14 @@ function Producto({userdata}){
 
                     <div className="form-group">
                                 Categoria:
-                                <select className="form-control custom-input"
-                                id='fileinput'/>
+                                <select className="form-control custom-input" name="Categoria" onChange={handleText} id='fileinput'>
+                                {categoriasData.map(item => (
+                                    <option key={item.id_categoria} value={item.id_categoria}>
+                                        {item.nombre}
+                                    </option>
+                                ))}
+                                </select>
                     </div>
-                    {/* <div className="star-widgeet">
-                        Rating:
-                        {[...Array(5)].map((star, index) => {
-                            const currentRating = index + 1;
-                            
-                            return(
-                                <label>
-                                    <input 
-                                        type="radio" 
-                                        name="rating" 
-                                        value={currentRating}
-                                        onClick={() => setRating(currentRating)}
-                                    />
-                                    <AiFillStar 
-                                        className='star' 
-                                        size={25}
-                                        color={currentRating <= (hover || rating) ? "#ffc107" : "#e4e5e9"}
-                                        onMouseEnter={() => setHover(currentRating)}
-                                        onMouseLeave={() => setHover(null)}
-                                    />
-                                </label> 
-                            );  
-                            
-                        })}
-                
-                    </div> */}
 
                     <div className="boton-addcategoria">
                         <button onClick={handleCategorias} >Crear Categoria</button> 
@@ -234,7 +292,7 @@ function Producto({userdata}){
                 </div>
     
             </form>
-                    {/* <div id="myModal" class="modal">
+                    {<div id="myModal" class="modal">
                             <div class="modal-content">
                             <span class="close">&times;</span>
                                 <form onSubmit={handleSubmit2}> 
@@ -251,7 +309,7 @@ function Producto({userdata}){
                                 </div>
                                 </form>
                             </div>
-                        </div> */}
+                        </div> }
 
 
         </div>

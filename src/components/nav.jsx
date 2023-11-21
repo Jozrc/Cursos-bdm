@@ -67,7 +67,7 @@ export const NavbarReact = ({userdata, setUserdata, setToken}) => {
   
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
-      <Container fluid>
+        <Container fluid>
         <Navbar.Brand href="/" className="Nav-titulo">BisonGO</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
@@ -83,12 +83,9 @@ export const NavbarReact = ({userdata, setUserdata, setToken}) => {
               style={{ maxHeight: '100px' }}
               navbarScroll
             >
-              <NavDropdown title="Más" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Compras</NavDropdown.Item>
-              <NavDropdown.Item href={`/carrito/${id_user}`}>
-                Carrito
-              </NavDropdown.Item>
-            </NavDropdown>
+            <Nav.Link href={`/carrito/${id_user}`}>Carrito</Nav.Link>
+            <Nav.Link href={`/categorias`}>Categorias</Nav.Link>
+
             <NavDropdown title="Opciones de vendedor" id="navbarScrollingDropdown">
               <NavDropdown.Item href="/producto">
                 Crear producto
@@ -100,13 +97,14 @@ export const NavbarReact = ({userdata, setUserdata, setToken}) => {
               </Nav>
            
              ): userForm.rol === 1 ? ( <Nav
+
               className="me-auto my-2 my-lg-0"
               style={{ maxHeight: '100px' }}
               navbarScroll
             >
                 <NavDropdown title="Más" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#action3">Compras</NavDropdown.Item>
-            <NavDropdown.Item href={`/carrito/${id_user}`}>
+              <NavDropdown.Item href={`/carrito/${id_user}`}>
                Carrito
               </NavDropdown.Item>
             </NavDropdown>
@@ -114,12 +112,12 @@ export const NavbarReact = ({userdata, setUserdata, setToken}) => {
           </Nav>
           {userForm.usuario ? (
              <div>
-             <Nav.Link variant="primary" onClick={handleShow} className="nav-link" aria-current="page">profile</Nav.Link>
+             <Nav.Link variant="primary" onClick={handleShow} className="nav-link" aria-current="page">Perfil</Nav.Link>
              </div>   
           
             
          ) : ( 
-          <Nav.Link href="/login" className="ms-2" style={{ color: "#ff58b9" }}>Log In</Nav.Link>
+          <Nav.Link href="/login" className="ms-2" style={{ color: "#ff58b9" }}>Iniciar Sesión</Nav.Link>
          )}  
         </Navbar.Collapse>
       </Container>
@@ -133,13 +131,13 @@ const OffcanvasComponent = ({ show, handleClose, handleLogout, usuario, id_user}
   return (
     <Offcanvas show={show} onHide={handleClose} placement='end' className="Offcanvas-backgorund">
       <Offcanvas.Header closeButton>
-        <Offcanvas.Title>Welcome {usuario}</Offcanvas.Title>
+        <Offcanvas.Title> Usuario: {usuario}</Offcanvas.Title>
       </Offcanvas.Header>
       <Offcanvas.Body >
-        <Link className="nav-link" aria-current="page" to={`./perfiles/${id_user}`}>Perfil</Link>
+        <Link className="nav-link" aria-current="page" to={`./perfiles/${id_user}`}>Panel de Control</Link>
         <Link className="nav-link" aria-current="page"  onClick={() =>{ 
           handleLogout();
-          handleClose();}} to="./">LogOut</Link>
+          handleClose();}} to="./login">Cerrar Sesión</Link>
       </Offcanvas.Body>
     </Offcanvas>
   );

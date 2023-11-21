@@ -94,33 +94,33 @@ function HeaderAndFooterExample({userdata}) {
     </div>
 <div>
   <ul className="opciones">
-    <li>Electronica</li>
-    <li>Comestibles</li>
-    <li>Videojuegos</li>
-    <li>Peliculas</li>
+    <li>Lacteos</li>
+    <li>Carnes</li>
+    <li>Frutas</li>
+    <li>Verduras</li>
   </ul>
 </div>
 
     <div className='fondo'>
       
     {productoData.map((row, index) => (
-     <div className="planner" key={index}>
+     <div className="plannerI" key={index}>
       
-     <div id="imagen-contenedor" onClick={() => toggleAmpliar1(index)}>
+     <div id="imagen-contenedorI" onClick={() => toggleAmpliar1(index)}>
      {row.img_prod && (
      <img
       src={URL.createObjectURL(new Blob([new Uint8Array(row.img_prod.data)]))}
        alt="Descripción de la imagen" 
-       className={`imagen-planner ${selectedImageIndex === index ? "ampliada" : ""}`} 
+       className={`imagen-plannerI ${selectedImageIndex === index ? "ampliadaI" : ""}`} 
        />
        )}
      </div>
   
-     <h1 className="titulo-planner">{row.nombreP}</h1>
-     <p className="descripcion">
+     <h1 className="titulo-plannerI">{row.nombreP}</h1>
+     <p className="descripcionI">
      {row.descripcion}</p>
      {userdata.data?.user.id_user ? (
-        <button type="submit" value="Submit" onClick={() => handleSubmit(row.id_producto)} className="button-planner">Agregar</button>
+        <button type="submit" value="Submit" onClick={() => handleSubmit(row.id_producto)} className="button-plannerI">Agregar</button>
      ) : 
      (<> </>)}
      </div>

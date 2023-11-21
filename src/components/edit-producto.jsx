@@ -198,7 +198,7 @@ function EditarProducto(){
                     </div> */}
                 </div>
                 <div className="boton-guardar">
-                    <button type="submit" >Editar Producto</button> 
+                    <button type="submit" >Guardar Cambios</button> 
                     </div>
 
             </form>

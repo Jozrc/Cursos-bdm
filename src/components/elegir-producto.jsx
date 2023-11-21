@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { AiFillStar } from 'react-icons/ai'
 import { Link } from 'react-router-dom';
-import "./Styles/producto.css"
 
+import "./Styles/elegirproducto.css"
 
 function ElegirProducto({userdata}){
 

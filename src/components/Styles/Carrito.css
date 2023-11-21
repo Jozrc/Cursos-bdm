@@ -8,7 +8,7 @@ body {
   
   /* Estilo del banner */
   .banner {
-    background-image: url(E:\pruebas\proyectobdm\front-bdm\src\components\images\compra.jpg);
+    background-image: url(C:\PIA\Front\front-bdm\src\components\images\compra.jpg);
     color: #ffffff;
     padding: 20px;
     text-align: center;
@@ -55,6 +55,12 @@ body {
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     }
   }
+  /* Estilo de la cantidad */
+  .cantidad{
+    display: flex;
+    justify-content: space-between; /* Esto alinea los elementos al principio y al final del contenedor */
+    align-items: center; /* Esto centra verticalmente los elementos */
+  }
   
   /* Estilo del título del producto */
   .titulo-producto {
@@ -72,7 +78,7 @@ body {
   /* Estilo de las acciones del producto (botones) */
   .acciones {
     display: flex;
-    justify-content: space-between;
+    justify-content: left;
     margin-top: 10px;
   }
   
@@ -99,7 +105,7 @@ body {
   
   /* Estilo del botón Aumentar Cantidad */
   .boton-aumentar {
-    width: 40%;
+    width: 10%;
     box-sizing: border-box;
     border: none;
     background-color: #f59ac7;

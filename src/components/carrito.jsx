@@ -1,23 +1,21 @@
 import React, { useState, useEffect } from "react";
-import miImagen from "./images/registerBDM.png";
-import { Link, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import './Styles/Carrito.css';
 
 function CarritoDeCompra() {
   const {id} = useParams();
   
+  const navigate = useNavigate();
 
   const [productoData, setproductoData] = useState([{}])
 
   useEffect ( () => { 
-    fetch(`http://localhost:5000/getCarrito/${(id)}`, {
+    fetch(`http://localhost:5000/getCarritoD/${(id)}`, {
       method: 'GET',
       headers: {'Content-Type': 'application/json'},
       }).then(
           response => response.json()
       ).then((data) => {
-        console.log(data)
-        
         if (Array.isArray(data)) {
           const formattedData = data.map((rows) => {
               return {
@@ -25,7 +23,6 @@ function CarritoDeCompra() {
               };
              
           });
-          console.log(data)
           setproductoData(formattedData);
           
       } else {
@@ -35,13 +32,34 @@ function CarritoDeCompra() {
       .catch((error) => {
         console.error('Fetch error:', error);
     });
-        
-    
+           
 }, [id]) 
   
   const handleConfirmarCompra = () => {
-    // Implementa la lógica para confirmar la compra aquí
-    alert('Compra confirmada');
+    
+    fetch(`http://localhost:5000/getCarritoA/${(id)}`, {
+      method: 'GET',
+      headers: {'Content-Type': 'application/json'},
+      }).then(
+          response => response.json()
+      ).then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          navigate(`/pago/${data[0].id_carrito}`); 
+        }     
+      })
+      .catch((error) => {
+        console.error('Fetch error:', error);
+    });
+  };
+
+  const handleAumentarCantidad = (id_producto) => {
+    const newData = productoData.map(item => {
+      if (item.id_producto === id_producto) {
+        return { ...item, cantidad: item.cantidad + 1 };
+      }
+      return item;
+    });
+    setProductoData(newData);
   };
 
   const handleEliminarArticulo = (id_producto) => { 
@@ -77,7 +95,7 @@ function CarritoDeCompra() {
         {productoData.map((row, index) =>  (
           <div className="producto" key={index}>
                 {row.img_prod && (
-              <img
+              <img class="imagen-producto"
                 src={URL.createObjectURL(new Blob([new Uint8Array(row.img_prod.data)]))}
                 alt="Descripción de la imagen"
               />
@@ -85,11 +103,24 @@ function CarritoDeCompra() {
         
             <h1 className="titulo-producto">{row.nombreP}</h1>
             <p className="descripcion">{row.descripcion}</p>
-            <div className="acciones">
-            <button className="boton-eliminar" onClick={() => handleEliminarArticulo(row.id_producto)}>Eliminar</button>
+            <div>
+              <p>Cantidad: {row.count_id_producto}</p>
+              <div className="acciones">
+                <button
+                  className="boton-aumentar"
+                >
+                  -
+                </button>
+                <button
+                  className="boton-aumentar"
+                  onClick={() => handleAumentarCantidad(row.id_producto)}
+                >
+                  +
+                </button>
+              </div>
+              <br />
             </div>
-            <br />
-            <p>Cantidad: {row.count_id_producto}</p>
+            
             <p>Subtotal: ${row.total_price}</p>
 
           </div>

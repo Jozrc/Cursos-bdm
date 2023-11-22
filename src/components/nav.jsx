@@ -84,7 +84,7 @@ export const NavbarReact = ({userdata, setUserdata, setToken}) => {
               navbarScroll
             >
               <NavDropdown title="Más" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Compras</NavDropdown.Item>
+              <NavDropdown.Item href={`/compra/${id_user}`}>Compras</NavDropdown.Item>
               <NavDropdown.Item href={`/carrito/${id_user}`}>
                 Carrito
               </NavDropdown.Item>
@@ -108,7 +108,7 @@ export const NavbarReact = ({userdata, setUserdata, setToken}) => {
               navbarScroll
             >
                 <NavDropdown title="Más" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Compras</NavDropdown.Item>
+              <NavDropdown.Item href={`/compra/${id_user}`}>Compras</NavDropdown.Item>
             <NavDropdown.Item href={`/carrito/${id_user}`}>
                Carrito
               </NavDropdown.Item>
@@ -120,7 +120,7 @@ export const NavbarReact = ({userdata, setUserdata, setToken}) => {
               navbarScroll
             >
               <NavDropdown title="Más" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Compras</NavDropdown.Item>
+              <NavDropdown.Item href={`/compra/${id_user}`}>Compras</NavDropdown.Item>
               <NavDropdown.Item href={`/carrito/${id_user}`}>
                 Carrito
               </NavDropdown.Item>

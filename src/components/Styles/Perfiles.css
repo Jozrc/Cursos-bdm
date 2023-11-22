@@ -164,3 +164,7 @@
 .admin-buttons button:hover {
   background-color: #ff98d4;
 }
+
+.custom-edit{
+  background-color: aliceblue;
+}

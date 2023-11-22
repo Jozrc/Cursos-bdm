@@ -12,6 +12,8 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css'
 import EditarProducto from "./components/edit-producto.jsx";
 import ElegirProducto from "./components/elegir-producto.jsx";
+import Compra from "./components/compra.jsx";
+
 
 
 
@@ -96,7 +98,7 @@ function App() {
         <Route path="/producto" element={<Producto userdata={userdata} />} />
         <Route path="/editarproducto" element={<ElegirProducto userdata={userdata}/>}/>
         <Route path="/editarproducto/:id" element={<EditarProducto/>}/>
-
+        <Route path="/compra/:id" element={<Compra/>}/>
       </Routes>
 
       {location.pathname !== "/login" && location.pathname !== "/register" && (

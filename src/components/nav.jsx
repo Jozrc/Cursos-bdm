@@ -39,6 +39,7 @@ export const NavbarReact = ({userdata, setUserdata, setToken}) => {
         rol:''}}});
         setToken('');
         localStorage.removeItem('token');
+        window.location.reload();
     };
 
     useEffect ( () => { 

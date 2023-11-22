@@ -58,6 +58,8 @@ function CarritoDeCompra() {
       .catch((error) => {
         console.error('Fetch error:', error);
     });
+
+
   };
 
   const handleEliminarArticulo = (id_producto) => { 
@@ -76,6 +78,7 @@ function CarritoDeCompra() {
     .catch((error) => {
       console.error('Error deleting element:', error);
     });
+    window.location.reload();
   }; 
 
 

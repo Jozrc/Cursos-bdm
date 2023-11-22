@@ -11,10 +11,6 @@ function Categorias() {
       descripcion:""
     })
 
-    const [categoriasForm, setCategoriasForm] = useState({
-        nombre:"",
-        descripcion:""
-      })
     
     const handleText = e => {
          

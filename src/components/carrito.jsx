@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import miImagen from "./images/registerBDM.png";
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import './Styles/Carrito.css';
+
 
 function CarritoDeCompra() {
   const {id} = useParams();
@@ -39,9 +40,24 @@ function CarritoDeCompra() {
     
 }, [id]) 
   
-  const handleConfirmarCompra = () => {
-    // Implementa la lógica para confirmar la compra aquí
-    alert('Compra confirmada');
+  const handleConfirmarCompra = (id) => {
+
+    const ConfirmarCompra = {total: totalPrecio, id: id}
+    
+    fetch('http://localhost:5000/putCarritoProducto', {
+      method: 'PUT',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(ConfirmarCompra),
+      }).then(
+          res => res.json()
+      ).then((res) => {
+        console.log(res)
+        alert('Compra realizada!!!')
+
+      })
+      .catch((error) => {
+        console.error('Fetch error:', error);
+    });
   };
 
   const handleEliminarArticulo = (id_producto) => { 
@@ -96,9 +112,10 @@ function CarritoDeCompra() {
         ))}
         <p>Total: ${totalPrecio} </p>
         <div className="acciones-carrito">
-          <button className="boton-confirmar" onClick={handleConfirmarCompra}>Confirmar Compra</button>
+          <button className="boton-confirmar" onClick={() => handleConfirmarCompra(productoData[0].id_carrito)}>Confirmar Compra</button>
         </div>
       </div>
+    
     </div>
   );
 }

@@ -90,11 +90,6 @@ export const Register = ({user, setUser}) => {
           <input type="password" name="contrasena" onChange={handleClick} className="inputField" />
         </div>
 
-        <h5 className="user-passw">Contact Number</h5>
-        <div className="inputContainer">
-          <input type="gmail" name="Cnumber" onChange={handleClick} className="inputField" />
-        </div>
-
         <div className="user-passw-container">
         <h5 className="user-passw">Birthday</h5>
         <h5 className="user-passw">Gender</h5>

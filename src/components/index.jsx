@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import miImagen from "./images/registerBDM.png";
 //import Imagenlogo from "./images/register.png";
 import './Styles/index.css';
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
+
 
 
 function HeaderAndFooterExample({userdata}) {
@@ -28,6 +31,7 @@ function HeaderAndFooterExample({userdata}) {
 
   const [productoData, setproductoData] = useState([{}])
 
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
     useEffect ( () => { 
 
@@ -38,10 +42,13 @@ function HeaderAndFooterExample({userdata}) {
         }).then(
             response => response.json()
         ).then((data) => {
-            if (Array.isArray(data)) {
-                const filteredData = data.filter((producto) =>
-                  producto.nombreP.toLowerCase().includes(nombreP.toLowerCase())
-                );
+          if (Array.isArray(data)) {
+            const filteredData = data.filter(
+              (producto) =>
+                producto.nombreP.toLowerCase().includes(nombreP.toLowerCase()) &&
+                (selectedCategory ? producto.id_categoria === selectedCategory : true)
+            );
+
                 console.log(data)
                 setproductoData(filteredData);
             } else {
@@ -53,15 +60,82 @@ function HeaderAndFooterExample({userdata}) {
         });
           
     
-    }, [productoForm])  
+    }, [productoForm, selectedCategory])  
 
-    const handleSubmit = (id_post) => { 
+    const selectedProduct = productoData.find((producto) => {
+      if (!selectedCategory) {
+        return true; // Mostrar todos si no hay categoría seleccionada
+      }
+      // Filtrar por categoría seleccionada
+      return producto.id_categoria === selectedCategory;
+    });
     
+    // Verificar si se encontró un producto antes de mapear
+    const productsToDisplay = selectedProduct ? [selectedProduct] : [];
+
+    const [categoriasTab, setCategoriasTab] = useState([{}])
+    
+
+    useEffect ( () => { 
+      fetch('http://localhost:5000/getAllCategorias', {
+        method: 'GET'
+        }).then(
+            response => response.json()
+        ).then((data) => {
+          console.log(data)
+          if (Array.isArray(data)) {
+            const formattedData = data.map((rows) => {
+                return {
+                  ...rows
+                };   
+           });
+           setCategoriasTab(formattedData)
+           console.log(data)
+          } else {
+            console.log('Invalid data format:', data);
+          }
+          
+        }) .catch((error) => {
+          console.error('Fetch error:', error);
+      });
+          
+      
+  }, []) 
+
+   
+
+    useEffect ( () => { 
+      fetch(`http://localhost:5000/getCarritoProducto/${(id_user)}`, {
+        method: 'GET',
+        headers: {'Content-Type': 'application/json'},
+        }).then(
+            response => response.json()
+        ).then((data) => {
+          console.log(data)
+          setCarritoProd({
+            id_carrito: data.id_carrito
+          })
+        })
+        .catch((error) => {
+          console.error('Fetch error:', error);
+      });
+          
+      
+  }, [id_user]) 
+
+  const [carritoProd, setCarritoProd] = useState(
+    {
+      id_carrito: ""
+    }
+  );
+    const handleSubmit = (id_post) => { 
+      
+      
       const reqbody = {
           id_post: id_post,
-          id_user: id_user
+          id_carrito: carritoProd.id_carrito
       }
-    console.log()
+      console.log()
       const requestInit = {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -76,6 +150,7 @@ function HeaderAndFooterExample({userdata}) {
   
   
     }
+
 
   return (
 <div>
@@ -93,38 +168,39 @@ function HeaderAndFooterExample({userdata}) {
         </h2>
     </div>
 <div>
-  <ul className="opciones">
-    <li>Electronica</li>
-    <li>Comestibles</li>
-    <li>Videojuegos</li>
-    <li>Peliculas</li>
+<ul className="opciones">
+    {categoriasTab.map((categoria, index) => (
+        <li key={index} onClick={() => setSelectedCategory(categoria.id_categoria)}>{categoria.nombre}</li>
+       ))}
   </ul>
 </div>
 
+   
     <div className='fondo'>
-      
-    {productoData.map((row, index) => (
-     <div className="planner" key={index}>
-      
-     <div id="imagen-contenedor" onClick={() => toggleAmpliar1(index)}>
-     {row.img_prod && (
-     <img
-      src={URL.createObjectURL(new Blob([new Uint8Array(row.img_prod.data)]))}
-       alt="Descripción de la imagen" 
-       className={`imagen-planner ${selectedImageIndex === index ? "ampliada" : ""}`} 
-       />
-       )}
-     </div>
-  
-     <h1 className="titulo-planner">{row.nombreP}</h1>
-     <p className="descripcion">
-     {row.descripcion}</p>
-     {userdata.data?.user.id_user ? (
-        <button type="submit" value="Submit" onClick={() => handleSubmit(row.id_producto)} className="button-planner">Agregar</button>
-     ) : 
-     (<> </>)}
-     </div>
-    ))}
+
+    {productsToDisplay.map((row, index) => (
+           
+              <div className="planner" key={index}>
+                
+              <div id="imagen-contenedor" onClick={() => toggleAmpliar1(index)}>
+              {row.img_prod && (
+              <img
+                src={URL.createObjectURL(new Blob([new Uint8Array(row.img_prod.data)]))}
+                alt="Descripción de la imagen" 
+                className={`imagen-planner ${selectedImageIndex === index ? "ampliada" : ""}`} 
+                />
+                )}
+              </div>
+            
+              <h1 className="titulo-planner">{row.nombreP}</h1>
+              <p className="descripcion">
+              {row.descripcion}</p>
+              {userdata.data?.user.id_user ? (
+                  <button type="submit" value="Submit" onClick={() => handleSubmit(row.id_producto)} className="button-planner">Agregar</button>
+              ) : 
+              (<> </>)}
+              </div>
+              ))}
     
     </div>
 

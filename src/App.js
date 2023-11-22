@@ -7,11 +7,12 @@ import Register from "./components/register.jsx";
 import Producto from "./components/producto.jsx";
 import Carrito from "./components/carrito.jsx"; 
 import Perfiles from "./components/perfiles.jsx";
+import Categorias from "./components/categorias.jsx";
 import { Route, Routes, useLocation } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css'
 import EditarProducto from "./components/edit-producto.jsx";
 import ElegirProducto from "./components/elegir-producto.jsx";
-import Categorias from "./components/categorias.jsx";
+
 
 
 
@@ -95,6 +96,7 @@ function App() {
         <Route path="/producto" element={<Producto userdata={userdata} />} />
         <Route path="/editarproducto" element={<ElegirProducto userdata={userdata}/>}/>
         <Route path="/editarproducto/:id" element={<EditarProducto/>}/>
+
       </Routes>
 
       {location.pathname !== "/login" && location.pathname !== "/register" && (

@@ -64,7 +64,7 @@ export const NavbarReact = ({userdata, setUserdata, setToken}) => {
     }, [id_user]) 
 
     
-  
+    console.log(userForm.rol)
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
@@ -96,6 +96,9 @@ export const NavbarReact = ({userdata, setUserdata, setToken}) => {
               <NavDropdown.Item href="/editarproducto">
                 Editar productos
               </NavDropdown.Item>
+              <NavDropdown.Item href="/categorias">
+              Categorias
+              </NavDropdown.Item>
             </NavDropdown>
               </Nav>
            
@@ -110,7 +113,32 @@ export const NavbarReact = ({userdata, setUserdata, setToken}) => {
                Carrito
               </NavDropdown.Item>
             </NavDropdown>
-            </Nav>):(<></>)}
+            </Nav>): userForm.rol === 2 ? ( 
+          <Nav
+              className="me-auto my-2 my-lg-0"
+              style={{ maxHeight: '100px' }}
+              navbarScroll
+            >
+              <NavDropdown title="Más" id="navbarScrollingDropdown">
+              <NavDropdown.Item href="#action3">Compras</NavDropdown.Item>
+              <NavDropdown.Item href={`/carrito/${id_user}`}>
+                Carrito
+              </NavDropdown.Item>
+            </NavDropdown>
+            <NavDropdown title="Opciones de vendedor" id="navbarScrollingDropdown">
+              <NavDropdown.Item href="/producto">
+                Crear producto
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/editarproducto">
+                Editar productos
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/categorias">
+              Categorias
+              </NavDropdown.Item>
+            </NavDropdown>
+              </Nav>
+       
+         ):(<></>)}
           </Nav>
           {userForm.usuario ? (
              <div>
@@ -118,7 +146,7 @@ export const NavbarReact = ({userdata, setUserdata, setToken}) => {
              </div>   
           
             
-         ) : ( 
+         ):( 
           <Nav.Link href="/login" className="ms-2" style={{ color: "#ff58b9" }}>Log In</Nav.Link>
          )}  
         </Navbar.Collapse>

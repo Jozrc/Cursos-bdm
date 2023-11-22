@@ -4,46 +4,98 @@ import { AiFillStar } from 'react-icons/ai'
 import './Styles/categorias.css';
 
 function Categorias() {
-    const { id } = useParams();
+
 
     const [categorias, setCategorias] = useState({
       nombre:"",
       descripcion:""
     })
-  
-  const handleText = e => {
+
+    const [categoriasForm, setCategoriasForm] = useState({
+        nombre:"",
+        descripcion:""
+      })
+    
+    const handleText = e => {
          
       setCategorias({
         ...categorias,
         [e.target.name]: e.target.value
       })
       console.log(categorias)
-  }
+    }
+
+    const handleTextEdit = e => {
+         
+        setCategorias({
+          ...categorias,
+          [e.target.name]: e.target.value
+        })
+        console.log(categorias)
+      }
+  
   
   const handleSubmit = (event)  => {
   
-      let {nombre, descripcion} = categorias;
+    let {nombre, descripcion} = categorias;
   
       event.preventDefault();
       if ( nombre === '' || descripcion === '' ) {
           alert('Todos los campos son obligatorios')
           return
       }
-  
-      const formData = new FormData();
-      formData.append('nombre', nombre);
-      formData.append('descripcion', descripcion);
-  
+
+
       const requestInit = {
           method: 'POST',
-          body: formData
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(categorias)
       }
   
       fetch('http://localhost:5000/postCategoria', requestInit)
       .then ((res) => res.json())
       .then ((res) => {
           console.log(res);
+          alert('Categoria agregada correctamente.')
+
+          setCategorias({
+            nombre:"",
+            descripcion:""
+          })
+
           window.location.reload(); 
+      })
+      .catch(err => { 
+          console.error(err)
+          alert('Categoria no agregada.')
+      })
+  
+  
+  }
+  
+
+  const handleSubmitEdit = (id_categoria)  => {
+  
+    const categoriasxd = {nombre: categorias.nombre, descripcion: categorias.descripcion, id: id_categoria};
+  
+      if ( categorias.nombre === '' || categorias.descripcion === '' ) {
+          alert('Todos los campos son obligatorios')
+          return
+      }
+
+
+      const requestInit = {
+          method: 'PUT',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(categoriasxd)
+      }
+      
+      fetch('http://localhost:5000/EditCategoria', requestInit)
+      .then ((res) => res.json())
+      .then ((res) => {
+          console.log(res);
+          alert('Categoria editada correctamente.')
+        //   window.location.reload(); 
       })
       .catch(err => { 
           console.error(err)
@@ -51,33 +103,112 @@ function Categorias() {
   
   
   }
+
   
+  
+
   const handleCategorias = (event)  => {
   
-      event.preventDefault();
-      // Obtener elementos del DOM
-      var modal = document.getElementById('myModal');
-      var span = document.getElementsByClassName('close')[0];
+        event.preventDefault();
+        // Obtener elementos del DOM
+        var modal = document.getElementById('myModal');
+        var span = document.getElementsByClassName('close')[0];
+    
+        // Función para abrir la ventana modal
+        modal.style.display = 'block';
+        
+        // Función para cerrar la ventana modal al hacer clic en la "X"
+        span.onclick = function() {
+        modal.style.display = 'none';
+        };
+    
+        // Función para cerrar la ventana modal al hacer clic fuera de ella
+        window.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+        };
+
+    }
+
+
+    const [idCategoria, setIdCategoria] = useState(null);
+    
+    console.log(idCategoria)
+
+    const handleCategoriasEdit = (id_categoria)  => {
+
+
+        // Obtener elementos del DOM
+        var modal = document.getElementById('myModalEdit');
+        var span = document.getElementsByClassName('close')[0];
+    
+        // Función para abrir la ventana modal
+        modal.style.display = 'block';
+        
+        // Función para cerrar la ventana modal al hacer clic en la "X"
+        span.onclick = function() {
+        modal.style.display = 'none';
+        };
+    
+        // Función para cerrar la ventana modal al hacer clic fuera de ella
+        window.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+            
+        }
+        };
+
+        setIdCategoria(id_categoria);
+
+       
+
+    }
+   
   
-      // Función para abrir la ventana modal
-      modal.style.display = 'block';
-      
-      // Función para cerrar la ventana modal al hacer clic en la "X"
-      span.onclick = function() {
-      modal.style.display = 'none';
-      };
-  
-      // Función para cerrar la ventana modal al hacer clic fuera de ella
-      window.onclick = function(event) {
-      if (event.target === modal) {
-          modal.style.display = 'none';
-      }
-  };
-  
-  }
-  
-  
-  
+    
+    
+
+    const [categoriasData, setCategoriasData] = useState([])
+    
+
+    useEffect(() => {
+        const obtenerDatos = async () => {
+            try {
+                const response = await fetch('http://localhost:5000/getAllCategorias');
+                const jsonData = await response.json();
+                setCategoriasData(jsonData);
+            } catch (error) {
+                console.error('Error al obtener los datos:', error);
+            }
+        };
+
+        obtenerDatos();
+    }, []);
+    
+    const handleSubmitDelete = (id_categoria) => {
+        
+        const deletecat = { id: id_categoria }
+
+        const requestInit = {
+            method: 'DELETE',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(deletecat)
+        }
+
+        fetch('http://localhost:5000/deleteCategoria', requestInit)
+        .then ((res) => res.json())
+        .then ((res) => {
+            console.log(res);
+            window.location.reload(); 
+        })
+        .catch(err => { 
+            console.error(err)
+        })
+
+    }
+
+    
     return (
       <div>
     
@@ -85,42 +216,79 @@ function Categorias() {
                   <div className="admin-header">
                       <h2>Administrar Categorias</h2>
                   </div>
-                  <table className="admin-table">
+                  <table id="categorias-table" className="admin-table">
                       <thead>
                           <tr>
                               <th>Nombre de Categoria</th>
                               <th>Descripcion</th>
+                              <th>Acciones</th>
                           </tr>
                       </thead>
                       <tbody>
-                          {/* Aquí se agregarán los datos de la tabla */}
+                        {Array.isArray(categoriasData) && categoriasData.length > 0 ? (
+                            categoriasData.map(item => (
+                                <tr key={item.id_categoria}>
+                                    <td>{item.nombre}</td>
+                                    <td>{item.descripcion}</td>
+                                    <td>
+                                        <div className="admin-buttons" >
+                                            <button onClick={() => handleSubmitDelete(item.id_categoria)}>Borrar</button>
+                                            <button onClick={() => handleCategoriasEdit(item.id_categoria)}>Modificar</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))
+                        ) : (
+                            <tr>
+                                <td colSpan="3">No hay datos disponibles</td>
+                            </tr>
+                        )}
                       </tbody>
                   </table>
                   <div className="admin-buttons">
                       <button onClick = {handleCategorias} > Agregar</button>
-                      <button onClick = {handleCategorias}> Modificar</button>
-                      <button>Eliminar</button>
                   </div>
               </div>
   
               <div id="myModal" class="modal">
-                              <div class="modal-content">
-                              <span class="close">&times;</span>
-                                  <form onSubmit={handleSubmit}> 
-                                  <div>
-                                      Nombre Categoria:
-                                      <input type="text" name="nombre" onChange={handleText}/>
-                                  </div>
-                                  <div>
-                                      Descripcion:
-                                      <textarea type="text" name="descripcion" onChange={handleText}/>
-                                  </div>
-                                  <div className="boton-guardar">
-                                      <button type="submit" /* onClick={guardarProducto}*/>Guardar Categoria</button> 
-                                  </div>
-                                  </form>
-                              </div>
-                          </div>
+                    <div class="modal-content">
+                    <span class="close">&times;</span>
+                        <form onSubmit={handleSubmit}> 
+                        <div>
+                            Nombre Categoria:
+                            <input type="text" name="nombre" onChange={handleText}/>
+                        </div>
+                        <div>
+                            Descripcion:
+                            <textarea type="text" name="descripcion" onChange={handleText}/>
+                        </div>
+                        <div className="boton-guardar">
+                            <button type="submit" /* onClick={guardarProducto}*/>Guardar Categoria</button> 
+                        </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div id="myModalEdit" class="modal">
+                    <div class="modal-content">
+                    <span class="close">&times;</span>
+
+    
+                        <form onSubmit={() => handleSubmitEdit(idCategoria)}> 
+                        <div>
+                            Nombre Categoria:
+                            <input type="text" name="nombre" value={categorias.nombre} onChange={handleTextEdit}/>
+                        </div>
+                        <div>
+                            Descripcion:
+                            <textarea type="text" name="descripcion"  value={categorias.descripcion} onChange={handleTextEdit}/>
+                        </div>
+                        <div className="boton-guardar">
+                            <button type="submit" /* onClick={guardarProducto}*/>Guardar Categoria</button> 
+                        </div>
+                        </form>
+                    </div>
+                </div>
       </div>
     );
   }

@@ -13,6 +13,10 @@ export const Perfiles = () =>{
     correo:""
   })
 
+  const [userRol, setuserRol] = useState({
+    rol:"",
+  })
+
 useEffect ( () => { 
     fetch(`http://localhost:5000/getEditUser/${(id)}`, {
       method: 'GET',
@@ -26,6 +30,9 @@ useEffect ( () => {
             apellido_p: data.apellido_p,
             usuario: data.usuario,
             correo:data.correo
+        });
+        setuserRol({
+            rol: data.rol
         });
       })
       .catch((error) => {
@@ -71,7 +78,7 @@ const handleSubmit = () => {
 
   return (
     <div>
-    { userForm.rol === 1 ? ( 
+    { userRol.rol === 1 ? ( 
         <div>
 
           <div className="profile-container">
@@ -124,7 +131,7 @@ const handleSubmit = () => {
           </div>
         </div>
 
-    ) : userForm.rol === 0 ? (
+    ) : userRol.rol === 0 ? (
     <div>
         
                  {/* AQUI SOLO PODRIA VERLO EL VENDEDOR */}
@@ -132,7 +139,7 @@ const handleSubmit = () => {
         <div className="profile-header">
             <h1>Perfil de Vendedor</h1>
         </div>
-        <form className="profile-info" onSubmit={handleSubmit}>
+        <form className="profile-info" onSubmit={() => handleSubmit(id)}>
                 <div>
                   <label>Nombre:</label>
                   <input type="text" name="nombre" onChange={handleChange}  value={userForm.nombre} />
@@ -185,7 +192,7 @@ const handleSubmit = () => {
         <div className="profile-header">
         <h1>Perfil de Administrador</h1>
         </div>
-        <form className="profile-info" onSubmit={handleSubmit}>
+        <form className="profile-info" onSubmit={() => handleSubmit(id)}>
             <div>
                 <label>Nombre:</label>
                 <input type="text" name="nombre" onChange={handleChange}  value={userForm.nombre} />

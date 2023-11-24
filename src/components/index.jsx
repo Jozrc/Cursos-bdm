@@ -219,7 +219,7 @@ function HeaderAndFooterExample({userdata}) {
    
     <div className='fondo'>
 
-    {productsToDisplay.map((row, index) => (
+    {productoData.map((row, index) => (
            
               <div className="planner" key={index}>
                 

@@ -421,7 +421,7 @@ const handleAddUser = (id) => {
                                     <tr key={item.id_venta}>
                                         <td>{item.usuario}</td>
                                         <td>{item.nombreP}</td>
-                                        <td>{item.Total}</td>
+                                        <td>${item.Total}</td>
                                         <td>{item.cantidad}</td>
                                         <td>{item.fecha}</td>
                                     </tr>
@@ -490,7 +490,7 @@ const handleAddUser = (id) => {
                                     <tr key={item.id_venta}>
                                         <td>{item.nombreP}</td>
                                         <td>{item.cantidad}</td>
-                                        <td>{item.precio}</td>
+                                        <td>${item.precio}</td>
                                         <td>
                                         <div className="admin-buttons">
                                             <button onClick={() => handleverDetalles(item.id_venta)}>Ver detalles</button>
@@ -612,7 +612,7 @@ const handleAddUser = (id) => {
                                     <tr key={item.id_venta}>
                                         <td>{item.nombreP}</td>
                                         <td>{item.cantidad}</td>
-                                        <td>{item.precio}</td>
+                                        <td>${item.precio}</td>
                                     </tr>
                                 ))
                             ): (
@@ -646,7 +646,7 @@ const handleAddUser = (id) => {
                                         <td>{item.usuario}</td>
                                         <td>{item.nombreP}</td>
                                         <td>{item.Total}</td>
-                                        <td>{item.cantidad}</td>
+                                        <td>${item.cantidad}</td>
                                         <td>{item.fecha}</td>
                                     </tr>
                                 ))

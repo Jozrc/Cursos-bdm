@@ -55,7 +55,7 @@ const Compra = () => {
                             <tr key={item.id_venta}>
                                 <td>{item.usuario}</td>
                                 <td>{item.nombreP}</td>
-                                <td>{item.Total}</td>
+                                <td>${item.Total}</td>
                                 <td>{item.cantidad}</td>
                                 <td>{item.fecha}</td>
                             </tr>

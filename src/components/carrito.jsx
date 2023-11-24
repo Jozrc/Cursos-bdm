@@ -64,7 +64,7 @@ function CarritoDeCompra() {
 
   const handleEliminarArticulo = (id_producto) => { 
     fetch(`http://localhost:5000/deleteCarrito/${id_producto}`, {
-      method: 'DELETE',
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },

@@ -99,10 +99,13 @@ export const Cotizaciones = ({userdata}) => {
                   if (Array.isArray(data)) {
                       const formattedData = data.map((rows) => {
                           return {
-                            ...rows
+                            ...rows,
                           };
                          
-                      });  
+                      }); 
+
+                      formattedData.sort((a, b) => b.total - a.total);
+
                       setcotizacionUserData(formattedData);
                   } else {
                       console.log('Invalid data format:', data);
@@ -163,8 +166,8 @@ export const Cotizaciones = ({userdata}) => {
                             <tr key={item.id_cotizacion_user}>
                                 <td>{item.usuario}</td>
                                 <td>{item.nombreP}</td>
-                                <td>{item.precio}</td>
-                                <td>{item.total}</td>
+                                <td>${item.precio}</td>
+                                <td>${item.total}</td>
                             </tr>
                         ))
                     ): (

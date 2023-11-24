@@ -13,6 +13,8 @@ import 'bootstrap/dist/css/bootstrap.css'
 import EditarProducto from "./components/edit-producto.jsx";
 import ElegirProducto from "./components/elegir-producto.jsx";
 import Compra from "./components/compra.jsx";
+import Elegircotizaciones from "./components/elegir-cotizacion.jsx";
+import Cotizaciones from "./components/cotizacion.jsx";
 
 
 
@@ -95,10 +97,12 @@ function App() {
         <Route path="/categorias" element={<Categorias />} />
         <Route path="/login" element={<Login user={user} setUser={setUser} setToken={setToken}/>} />
         <Route path="/register" element={<Register user = {user} setUser = {setUser}/>} />
-        <Route path="/producto" element={<Producto userdata={userdata} />} />
+        <Route path="/producto" element={<Producto userdata={userdata} />}/>
         <Route path="/editarproducto" element={<ElegirProducto userdata={userdata}/>}/>
         <Route path="/editarproducto/:id" element={<EditarProducto/>}/>
         <Route path="/compra/:id" element={<Compra/>}/>
+        <Route path="/cotizaciones" element={<Elegircotizaciones/>}/>
+        <Route path="/cotizaciones/:id" element={<Cotizaciones userdata={userdata}/>}/>
       </Routes>
 
       {location.pathname !== "/login" && location.pathname !== "/register" && (

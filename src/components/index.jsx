@@ -23,7 +23,47 @@ function HeaderAndFooterExample({userdata}) {
         [e.target.name]: e.target.value
     })
 };
-  
+
+  const [cotizacion, setCotizacion ] = useState({
+    fechafin: ''
+  })
+
+  const handleClickCotizacion = e => {
+
+    setCotizacion({
+      ...cotizacion,
+      [e.target.name]: e.target.value
+    })
+    console.log(cotizacion);
+  }
+
+  const handleSubmitCotizacion = (id_producto) => { 
+    
+    if (cotizacion.fechafin === ''){
+      alert('Favor de llenar la fecha')
+      return
+    }
+
+    const reqbody = {
+        id_producto: id_producto,
+        fechafin: cotizacion.fechafin
+    }
+
+    const requestInit = {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(reqbody),
+    }
+
+    fetch('http://localhost:5000/postCotizaciones', requestInit)
+    .then ((res) => res.json())
+    .then ((res) => {
+      console.log(res)
+      alert("Cotizacion agregada :)")
+    })
+
+
+  }
 
   const toggleAmpliar1 = (index) => {
     setSelectedImageIndex(index === selectedImageIndex ? null : index);
@@ -146,6 +186,7 @@ function HeaderAndFooterExample({userdata}) {
       .then ((res) => res.json())
       .then ((res) => {
         console.log(res)
+        alert("Producto agregado a carrito :)")
       })
   
   
@@ -191,15 +232,35 @@ function HeaderAndFooterExample({userdata}) {
                 />
                 )}
               </div>
-            
+                
               <h1 className="titulo-planner">{row.nombreP}</h1>
               <p className="descripcion">
               {row.descripcion}</p>
               {userdata.data?.user.id_user ? (
+                <div >
                   <button type="submit" value="Submit" onClick={() => handleSubmit(row.id_producto)} className="button-planner">Agregar</button>
+                  <div>
+                  {userdata.data?.user.rol === 0 ? (
+                    <div className="custom_cotizacion">
+                      Añadir a cotizaciones:
+                      <input type="date" name="fechafin"  onChange={handleClickCotizacion}/>
+                      <button type="submit" value="Submit" onClick={() => handleSubmitCotizacion(row.id_producto)} className="button-planner">Agregar</button>
+                    </div>
+                  ) : userdata.data?.user.rol === 2 ? (
+                    <div className="custom_cotizacion">
+                      Añadir a cotizaciones:
+                      <input type="date" name="fechafin" onChange={handleClickCotizacion}/>
+                      <button type="submit" value="Submit" onClick={() => handleSubmitCotizacion(row.id_producto)} className="button-planner">Agregar</button>
+                    </div>
+                ) :
+                  (<> </>)}
+                  </div>
+                </div>
+
               ) : 
               (<> </>)}
               </div>
+               
               ))}
     
     </div>

@@ -89,6 +89,9 @@ export const NavbarReact = ({userdata, setUserdata, setToken}) => {
               <NavDropdown.Item href={`/carrito/${id_user}`}>
                 Carrito
               </NavDropdown.Item>
+              <NavDropdown.Item href={`/cotizaciones`}>
+                Cotizaciones
+              </NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="Opciones de vendedor" id="navbarScrollingDropdown">
               <NavDropdown.Item href="/producto">
@@ -113,6 +116,9 @@ export const NavbarReact = ({userdata, setUserdata, setToken}) => {
             <NavDropdown.Item href={`/carrito/${id_user}`}>
                Carrito
               </NavDropdown.Item>
+              <NavDropdown.Item href={`/cotizaciones`}>
+                Cotizaciones
+              </NavDropdown.Item>
             </NavDropdown>
             </Nav>): userForm.rol === 2 ? ( 
           <Nav
@@ -124,6 +130,9 @@ export const NavbarReact = ({userdata, setUserdata, setToken}) => {
               <NavDropdown.Item href={`/compra/${id_user}`}>Compras</NavDropdown.Item>
               <NavDropdown.Item href={`/carrito/${id_user}`}>
                 Carrito
+              </NavDropdown.Item>
+              <NavDropdown.Item href={`/cotizaciones`}>
+                Cotizaciones
               </NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="Opciones de vendedor" id="navbarScrollingDropdown">

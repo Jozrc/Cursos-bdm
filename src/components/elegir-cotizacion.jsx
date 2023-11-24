@@ -1,36 +1,31 @@
 import React, { useState, useEffect } from "react";
-import { AiFillStar } from 'react-icons/ai'
 import { Link } from 'react-router-dom';
-import "./Styles/producto.css"
 
-
-function ElegirProducto({userdata}){
-
+export const Elegircotizaciones = () => {
     const [selectedImageIndex, setSelectedImageIndex] = useState(null);
 
     const toggleAmpliar1 = (index) => {
         setSelectedImageIndex(index === selectedImageIndex ? null : index);
-      };
+    };
 
     const [productoData, setproductoData] = useState([{}])
-
-    useEffect ( () => { 
-      fetch('http://localhost:5000/getProducto', {
+    console.log(productoData)
+    useEffect (() => { 
+      fetch('http://localhost:5000/getAllCotizaciones', {
         method: 'GET',
         headers: {'Content-Type': 'application/json'}
         }).then(
-            response => response.json()
+            res => res.json()
         ).then((data) => {
             if (Array.isArray(data)) {
                 const formattedData = data.map((rows) => {
                     return {
                       ...rows
-                    };
-                   
+                    }; 
                 });
-                console.log(data)
 
                 setproductoData(formattedData);
+                console.log(formattedData)
             } else {
               console.log('Invalid data format:', data);
             }
@@ -42,8 +37,10 @@ function ElegirProducto({userdata}){
         });
           
     
-    }, []) 
+    }, []);
+
     
+
     return(
         <div>
             {productoData.map((row, index) => (
@@ -62,17 +59,11 @@ function ElegirProducto({userdata}){
                 <h1 className="titulo-planner">{row.nombreP}</h1>
                 <p className="descripcion">
                 {row.descripcion}</p>
-                {userdata.data?.user.id_user ? (
-                <Link to={`./${row.id_producto}`}><button className="button-planner">Editar</button></Link>
-                ) : 
-                (<> </>)}
-
-                
-                
+                <Link to={`./${row.id_cotizacion}`}><button className="button-planner">Cotizar</button></Link>               
                 </div>
             ))} 
         </div>
     );
 }
 
-export default ElegirProducto;
+export default Elegircotizaciones

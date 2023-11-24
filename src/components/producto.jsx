@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { AiFillStar } from 'react-icons/ai'
 import "./Styles/producto.css"
 
@@ -17,7 +18,7 @@ function Producto({userdata}){
         categoria: ''
     });
 
-
+    const Navegate = useNavigate();
 
     const handleText = e => {
        
@@ -96,7 +97,7 @@ function Producto({userdata}){
         .then ((res) => res.json())
         .then ((res) => {
             console.log(res);
-            window.location.reload(); 
+            Navegate('/') 
         })
         .catch(err => { 
             console.error(err)

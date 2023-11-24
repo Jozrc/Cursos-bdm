@@ -234,8 +234,8 @@ function HeaderAndFooterExample({userdata}) {
               </div>
                 
               <h1 className="titulo-planner">{row.nombreP}</h1>
-              <p className="descripcion">
-              {row.descripcion}</p>
+              <h5 className="descripcion">
+              {row.descripcion}</h5>
               {userdata.data?.user.id_user ? (
                 <div >
                   <button type="submit" value="Submit" onClick={() => handleSubmit(row.id_producto)} className="button-planner">Agregar</button>

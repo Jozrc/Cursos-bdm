@@ -187,7 +187,7 @@ function Categorias() {
         const deletecat = { id: id_categoria }
 
         const requestInit = {
-            method: 'DELETE',
+            method: 'PUT',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(deletecat)
         }
